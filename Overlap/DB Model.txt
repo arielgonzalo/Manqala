@@ -1,0 +1,11 @@
+rails g scaffold Client name:string email:string phone:string is_active:boolean inactivation_text:string
+rails g scaffold Library_Access start_time:time end_time:time
+rails g scaffold Access_Granting client:references library_access:references 
+rails g scaffold Food name:string description:string price:double 
+rails g scaffold Table_Games name:string description:string qt_in_use:integer qt_in_bk:integer penalty_cost:double serial:string bin:string  dificulty_level:integer outdoor_usable:boolean
+rails g scaffold Rental client:references table_game:references
+rails g scaffold Tax name:string percentage:double
+rails g scaffold Food_Tax_Assigment food:references tax:references
+rails g scaffold Table_Game_Tax_Assigment table_game:references  tax:references
+rails g scaffold Invoice date_time:time client:references amount:double tax_amount:double total_amount:double table_number:integer
+rails g scaffold Invoice_Detail invoice:references product:string indications:string qt_ordered:integer qt_served:integer unitary_price:double total_tax:double total_price:double ordered_at:time finalized_at:time
