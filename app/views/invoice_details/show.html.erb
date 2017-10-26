@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Invoice:</strong>
+  <%= @invoice_detail.invoice %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @invoice_detail.product %>
+</p>
+
+<p>
+  <strong>Indications:</strong>
+  <%= @invoice_detail.indications %>
+</p>
+
+<p>
+  <strong>Qt ordered:</strong>
+  <%= @invoice_detail.qt_ordered %>
+</p>
+
+<p>
+  <strong>Qt served:</strong>
+  <%= @invoice_detail.qt_served %>
+</p>
+
+<p>
+  <strong>Unitary price:</strong>
+  <%= @invoice_detail.unitary_price %>
+</p>
+
+<p>
+  <strong>Total tax:</strong>
+  <%= @invoice_detail.total_tax %>
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @invoice_detail.total_price %>
+</p>
+
+<p>
+  <strong>Ordered at:</strong>
+  <%= @invoice_detail.ordered_at %>
+</p>
+
+<p>
+  <strong>Finalized at:</strong>
+  <%= @invoice_detail.finalized_at %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_detail_path(@invoice_detail) %> |
+<%= link_to 'Back', invoice_details_path %>

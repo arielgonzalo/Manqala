@@ -1,0 +1,2 @@
+module TableGameTaxAssigmentsHelper
+end

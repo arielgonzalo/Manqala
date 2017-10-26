@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_time: 2017-10-22 18:21:16
+  client: one
+  amount: 
+  tax_amount: 
+  total_amount: 
+  table_number: 1
+
+two:
+  date_time: 2017-10-22 18:21:16
+  client: two
+  amount: 
+  tax_amount: 
+  total_amount: 
+  table_number: 1

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invoice: one
+  product: MyString
+  indications: MyString
+  qt_ordered: 1
+  qt_served: 1
+  unitary_price: 
+  total_tax: 
+  total_price: 
+  ordered_at: 2017-10-22 18:21:31
+  finalized_at: 2017-10-22 18:21:31
+
+two:
+  invoice: two
+  product: MyString
+  indications: MyString
+  qt_ordered: 1
+  qt_served: 1
+  unitary_price: 
+  total_tax: 
+  total_price: 
+  ordered_at: 2017-10-22 18:21:31
+  finalized_at: 2017-10-22 18:21:31

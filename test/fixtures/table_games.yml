@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  qt_in_use: 1
+  qt_in_bk: 1
+  penalty_cost: 
+  serial: MyString
+  bin: MyString
+  dificulty_level: 1
+  outdoor_usable: false
+
+two:
+  name: MyString
+  description: MyString
+  qt_in_use: 1
+  qt_in_bk: 1
+  penalty_cost: 
+  serial: MyString
+  bin: MyString
+  dificulty_level: 1
+  outdoor_usable: false

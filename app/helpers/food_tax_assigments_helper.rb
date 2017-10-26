@@ -1,0 +1,2 @@
+module FoodTaxAssigmentsHelper
+end

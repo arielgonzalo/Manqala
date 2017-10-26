@@ -1,0 +1,67 @@
+<%= form_with(model: invoice_detail, local: true) do |form| %>
+  <% if invoice_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invoice_detail.errors.count, "error") %> prohibited this invoice_detail from being saved:</h2>
+
+      <ul>
+      <% invoice_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :invoice_id %>
+    <%= form.text_field :invoice_id, id: :invoice_detail_invoice_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product %>
+    <%= form.text_field :product, id: :invoice_detail_product %>
+  </div>
+
+  <div class="field">
+    <%= form.label :indications %>
+    <%= form.text_field :indications, id: :invoice_detail_indications %>
+  </div>
+
+  <div class="field">
+    <%= form.label :qt_ordered %>
+    <%= form.number_field :qt_ordered, id: :invoice_detail_qt_ordered %>
+  </div>
+
+  <div class="field">
+    <%= form.label :qt_served %>
+    <%= form.number_field :qt_served, id: :invoice_detail_qt_served %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unitary_price %>
+    <%= form.text_field :unitary_price, id: :invoice_detail_unitary_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_tax %>
+    <%= form.text_field :total_tax, id: :invoice_detail_total_tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_price %>
+    <%= form.text_field :total_price, id: :invoice_detail_total_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ordered_at %>
+    <%= form.time_select :ordered_at, id: :invoice_detail_ordered_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finalized_at %>
+    <%= form.time_select :finalized_at, id: :invoice_detail_finalized_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

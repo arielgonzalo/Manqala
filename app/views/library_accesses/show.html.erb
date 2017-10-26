@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @library_access.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @library_access.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_library_access_path(@library_access) %> |
+<%= link_to 'Back', library_accesses_path %>
