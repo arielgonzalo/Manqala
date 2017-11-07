@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2017-11-07
+  end_time: 2017-11-07
+  client: one
+
+two:
+  start_time: 2017-11-07
+  end_time: 2017-11-07
+  client: two

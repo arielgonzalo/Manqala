@@ -6,8 +6,23 @@
 </p>
 
 <p>
-  <strong>Table game:</strong>
-  <%= @rental.table_game %>
+  <strong>Board game:</strong>
+  <%= @rental.board_game %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @rental.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @rental.end_time %>
+</p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @rental.table %>
 </p>
 
 <%= link_to 'Edit', edit_rental_path(@rental) %> |

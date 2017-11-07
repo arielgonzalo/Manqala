@@ -1,1 +1,0 @@
-json.partial! "table_game_tax_assigments/table_game_tax_assigment", table_game_tax_assigment: @table_game_tax_assigment

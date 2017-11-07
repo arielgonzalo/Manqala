@@ -1,33 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Date time:</strong>
-  <%= @invoice.date_time %>
-</p>
-
-<p>
   <strong>Client:</strong>
   <%= @invoice.client %>
 </p>
 
 <p>
-  <strong>Amount:</strong>
-  <%= @invoice.amount %>
+  <strong>Table:</strong>
+  <%= @invoice.table %>
 </p>
 
 <p>
-  <strong>Tax amount:</strong>
-  <%= @invoice.tax_amount %>
+  <strong>User:</strong>
+  <%= @invoice.user %>
 </p>
 
 <p>
-  <strong>Total amount:</strong>
-  <%= @invoice.total_amount %>
+  <strong>Subtotal:</strong>
+  <%= @invoice.subtotal %>
 </p>
 
 <p>
-  <strong>Table number:</strong>
-  <%= @invoice.table_number %>
+  <strong>Taxes:</strong>
+  <%= @invoice.taxes %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @invoice.service %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @invoice.total %>
+</p>
+
+<p>
+  <strong>Date time:</strong>
+  <%= @invoice.date_time %>
 </p>
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |

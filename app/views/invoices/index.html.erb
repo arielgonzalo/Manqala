@@ -5,12 +5,14 @@
 <table>
   <thead>
     <tr>
-      <th>Date time</th>
       <th>Client</th>
-      <th>Amount</th>
-      <th>Tax amount</th>
-      <th>Total amount</th>
-      <th>Table number</th>
+      <th>Table</th>
+      <th>User</th>
+      <th>Subtotal</th>
+      <th>Taxes</th>
+      <th>Service</th>
+      <th>Total</th>
+      <th>Date time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,12 +20,14 @@
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
-        <td><%= invoice.date_time %></td>
         <td><%= invoice.client %></td>
-        <td><%= invoice.amount %></td>
-        <td><%= invoice.tax_amount %></td>
-        <td><%= invoice.total_amount %></td>
-        <td><%= invoice.table_number %></td>
+        <td><%= invoice.table %></td>
+        <td><%= invoice.user %></td>
+        <td><%= invoice.subtotal %></td>
+        <td><%= invoice.taxes %></td>
+        <td><%= invoice.service %></td>
+        <td><%= invoice.total %></td>
+        <td><%= invoice.date_time %></td>
         <td><%= link_to 'Show', invoice %></td>
         <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
         <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>

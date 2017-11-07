@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  table: one
+  product: one
+  pass: one
+  quantity: 1
+  status: 1
+  date_time: 2017-11-07
+  comment: MyString
+
+two:
+  table: two
+  product: two
+  pass: two
+  quantity: 1
+  status: 1
+  date_time: 2017-11-07
+  comment: MyString

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Board Game Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @board_game_categories.each do |board_game_category| %>
+      <tr>
+        <td><%= board_game_category.name %></td>
+        <td><%= board_game_category.description %></td>
+        <td><%= link_to 'Show', board_game_category %></td>
+        <td><%= link_to 'Edit', edit_board_game_category_path(board_game_category) %></td>
+        <td><%= link_to 'Destroy', board_game_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Board Game Category', new_board_game_category_path %>

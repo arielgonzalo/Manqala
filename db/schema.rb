@@ -10,40 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023002131) do
+ActiveRecord::Schema.define(version: 20171107172933) do
 
-  create_table "access_grantings", force: :cascade do |t|
-    t.integer "client_id"
-    t.integer "library_access_id"
+  create_table "board_game_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_access_grantings_on_client_id"
-    t.index ["library_access_id"], name: "index_access_grantings_on_library_access_id"
+  end
+
+  create_table "board_games", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "quantity"
+    t.integer "backup_quantity"
+    t.float "replacement_cost"
+    t.integer "difficulty"
+    t.string "type"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_board_games_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "clients", force: :cascade do |t|
+    t.string "pid"
     t.string "name"
     t.string "email"
     t.string "phone"
     t.boolean "is_active"
     t.string "inactivation_text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "food_tax_assigments", force: :cascade do |t|
-    t.integer "food_id"
-    t.integer "tax_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["food_id"], name: "index_food_tax_assigments_on_food_id"
-    t.index ["tax_id"], name: "index_food_tax_assigments_on_tax_id"
-  end
-
-  create_table "foods", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,32 +67,91 @@ ActiveRecord::Schema.define(version: 20171023002131) do
     t.index ["invoice_id"], name: "index_invoice_details_on_invoice_id"
   end
 
+  create_table "invoice_lines", force: :cascade do |t|
+    t.integer "invoice_id"
+    t.integer "product_id"
+    t.integer "pass_id"
+    t.integer "quantity"
+    t.float "unit_price"
+    t.float "unit_total_price"
+    t.float "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_invoice_lines_on_invoice_id"
+    t.index ["pass_id"], name: "index_invoice_lines_on_pass_id"
+    t.index ["product_id"], name: "index_invoice_lines_on_product_id"
+  end
+
   create_table "invoices", force: :cascade do |t|
-    t.time "date_time"
     t.integer "client_id"
-    t.float "amount"
-    t.float "tax_amount"
-    t.float "total_amount"
-    t.integer "table_number"
+    t.integer "table_id"
+    t.integer "user_id"
+    t.float "subtotal"
+    t.float "taxes"
+    t.float "service"
+    t.float "total"
+    t.date "date_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.index ["table_id"], name: "index_invoices_on_table_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
-  create_table "library_accesses", force: :cascade do |t|
-    t.time "start_time"
-    t.time "end_time"
+  create_table "orders", force: :cascade do |t|
+    t.integer "table_id"
+    t.integer "product_id"
+    t.integer "pass_id"
+    t.integer "quantity"
+    t.integer "status"
+    t.date "date_time"
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pass_id"], name: "index_orders_on_pass_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["table_id"], name: "index_orders_on_table_id"
+  end
+
+  create_table "passes", force: :cascade do |t|
+    t.date "start_time"
+    t.date "end_time"
+    t.integer "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_passes_on_client_id"
+  end
+
+  create_table "product_tax_assigments", force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "tax_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_product_tax_assigments_on_food_id"
+    t.index ["tax_id"], name: "index_product_tax_assigments_on_tax_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.float "price"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "rentals", force: :cascade do |t|
     t.integer "client_id"
-    t.integer "table_game_id"
+    t.integer "board_game_id"
+    t.date "start_time"
+    t.date "end_time"
+    t.integer "table_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["board_game_id"], name: "index_rentals_on_board_game_id"
     t.index ["client_id"], name: "index_rentals_on_client_id"
-    t.index ["table_game_id"], name: "index_rentals_on_table_game_id"
+    t.index ["table_id"], name: "index_rentals_on_table_id"
   end
 
   create_table "table_game_tax_assigments", force: :cascade do |t|
@@ -111,6 +173,14 @@ ActiveRecord::Schema.define(version: 20171023002131) do
     t.string "bin"
     t.integer "dificulty_level"
     t.boolean "outdoor_usable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tables", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_outdoor"
+    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,8 +2,14 @@
 
 one:
   client: one
-  table_game: one
+  board_game: one
+  start_time: 2017-11-07
+  end_time: 2017-11-07
+  table: 
 
 two:
   client: two
-  table_game: two
+  board_game: two
+  start_time: 2017-11-07
+  end_time: 2017-11-07
+  table: 

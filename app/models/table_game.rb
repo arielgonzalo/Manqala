@@ -1,2 +1,0 @@
-class TableGame < ApplicationRecord
-end

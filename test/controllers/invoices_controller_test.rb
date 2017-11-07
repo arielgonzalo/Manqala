@@ -17,7 +17,7 @@ class InvoicesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create invoice" do
     assert_difference('Invoice.count') do
-      post invoices_url, params: { invoice: { amount: @invoice.amount, client_id: @invoice.client_id, date_time: @invoice.date_time, table_number: @invoice.table_number, tax_amount: @invoice.tax_amount, total_amount: @invoice.total_amount } }
+      post invoices_url, params: { invoice: { client_id: @invoice.client_id, date_time: @invoice.date_time, service: @invoice.service, subtotal: @invoice.subtotal, table_id: @invoice.table_id, taxes: @invoice.taxes, total: @invoice.total, user_id: @invoice.user_id } }
     end
 
     assert_redirected_to invoice_url(Invoice.last)
@@ -34,7 +34,7 @@ class InvoicesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update invoice" do
-    patch invoice_url(@invoice), params: { invoice: { amount: @invoice.amount, client_id: @invoice.client_id, date_time: @invoice.date_time, table_number: @invoice.table_number, tax_amount: @invoice.tax_amount, total_amount: @invoice.total_amount } }
+    patch invoice_url(@invoice), params: { invoice: { client_id: @invoice.client_id, date_time: @invoice.date_time, service: @invoice.service, subtotal: @invoice.subtotal, table_id: @invoice.table_id, taxes: @invoice.taxes, total: @invoice.total, user_id: @invoice.user_id } }
     assert_redirected_to invoice_url(@invoice)
   end
 

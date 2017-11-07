@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Food:</strong>
+  <%= @product_tax_assigment.food %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @product_tax_assigment.tax %>
+</p>
+
+<%= link_to 'Edit', edit_product_tax_assigment_path(@product_tax_assigment) %> |
+<%= link_to 'Back', product_tax_assigments_path %>

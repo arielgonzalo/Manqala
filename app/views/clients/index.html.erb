@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Pid</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @clients.each do |client| %>
       <tr>
+        <td><%= client.pid %></td>
         <td><%= client.name %></td>
         <td><%= client.email %></td>
         <td><%= client.phone %></td>

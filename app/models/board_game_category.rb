@@ -1,0 +1,2 @@
+class BoardGameCategory < ApplicationRecord
+end

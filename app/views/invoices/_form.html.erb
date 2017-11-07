@@ -12,33 +12,43 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :date_time %>
-    <%= form.time_select :date_time, id: :invoice_date_time %>
-  </div>
-
-  <div class="field">
     <%= form.label :client_id %>
     <%= form.text_field :client_id, id: :invoice_client_id %>
   </div>
 
   <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount, id: :invoice_amount %>
+    <%= form.label :table_id %>
+    <%= form.text_field :table_id, id: :invoice_table_id %>
   </div>
 
   <div class="field">
-    <%= form.label :tax_amount %>
-    <%= form.text_field :tax_amount, id: :invoice_tax_amount %>
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :invoice_user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :total_amount %>
-    <%= form.text_field :total_amount, id: :invoice_total_amount %>
+    <%= form.label :subtotal %>
+    <%= form.text_field :subtotal, id: :invoice_subtotal %>
   </div>
 
   <div class="field">
-    <%= form.label :table_number %>
-    <%= form.number_field :table_number, id: :invoice_table_number %>
+    <%= form.label :taxes %>
+    <%= form.text_field :taxes, id: :invoice_taxes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :service %>
+    <%= form.text_field :service, id: :invoice_service %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total %>
+    <%= form.text_field :total, id: :invoice_total %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_time %>
+    <%= form.date_select :date_time, id: :invoice_date_time %>
   </div>
 
   <div class="actions">

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  quantity: 1
+  backup_quantity: 1
+  replacement_cost: 
+  difficulty: 
+  type: 
+  category: one
+
+two:
+  name: MyString
+  description: MyString
+  quantity: 1
+  backup_quantity: 1
+  replacement_cost: 
+  difficulty: 
+  type: 
+  category: two

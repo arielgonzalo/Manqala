@@ -1,0 +1,57 @@
+<%= form_with(model: board_game, local: true) do |form| %>
+  <% if board_game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(board_game.errors.count, "error") %> prohibited this board_game from being saved:</h2>
+
+      <ul>
+      <% board_game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :board_game_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :board_game_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :board_game_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :backup_quantity %>
+    <%= form.number_field :backup_quantity, id: :board_game_backup_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :replacement_cost %>
+    <%= form.text_field :replacement_cost, id: :board_game_replacement_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :difficulty %>
+    <%= form.text_field :difficulty, id: :board_game_difficulty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type, id: :board_game_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.text_field :category_id, id: :board_game_category_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

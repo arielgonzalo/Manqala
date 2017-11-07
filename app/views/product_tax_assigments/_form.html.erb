@@ -1,0 +1,27 @@
+<%= form_with(model: product_tax_assigment, local: true) do |form| %>
+  <% if product_tax_assigment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product_tax_assigment.errors.count, "error") %> prohibited this product_tax_assigment from being saved:</h2>
+
+      <ul>
+      <% product_tax_assigment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :food_id %>
+    <%= form.text_field :food_id, id: :product_tax_assigment_food_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_id %>
+    <%= form.text_field :tax_id, id: :product_tax_assigment_tax_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,2 +1,2 @@
-json.extract! invoice, :id, :date_time, :client_id, :amount, :tax_amount, :total_amount, :table_number, :created_at, :updated_at
+json.extract! invoice, :id, :client_id, :table_id, :user_id, :subtotal, :taxes, :service, :total, :date_time, :created_at, :updated_at
 json.url invoice_url(invoice, format: :json)

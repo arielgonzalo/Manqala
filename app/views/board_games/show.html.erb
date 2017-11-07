@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @board_game.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @board_game.description %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @board_game.quantity %>
+</p>
+
+<p>
+  <strong>Backup quantity:</strong>
+  <%= @board_game.backup_quantity %>
+</p>
+
+<p>
+  <strong>Replacement cost:</strong>
+  <%= @board_game.replacement_cost %>
+</p>
+
+<p>
+  <strong>Difficulty:</strong>
+  <%= @board_game.difficulty %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @board_game.type %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @board_game.category %>
+</p>
+
+<%= link_to 'Edit', edit_board_game_path(@board_game) %> |
+<%= link_to 'Back', board_games_path %>

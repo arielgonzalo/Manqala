@@ -17,8 +17,23 @@
   </div>
 
   <div class="field">
-    <%= form.label :table_game_id %>
-    <%= form.text_field :table_game_id, id: :rental_table_game_id %>
+    <%= form.label :board_game_id %>
+    <%= form.text_field :board_game_id, id: :rental_board_game_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.date_select :start_time, id: :rental_start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.date_select :end_time, id: :rental_end_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :table %>
+    <%= form.text_field :table, id: :rental_table %>
   </div>
 
   <div class="actions">

@@ -1,2 +1,0 @@
-class LibraryAccess < ApplicationRecord
-end

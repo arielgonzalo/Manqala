@@ -17,7 +17,7 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create rental" do
     assert_difference('Rental.count') do
-      post rentals_url, params: { rental: { client_id: @rental.client_id, table_game_id: @rental.table_game_id } }
+      post rentals_url, params: { rental: { board_game_id: @rental.board_game_id, client_id: @rental.client_id, end_time: @rental.end_time, start_time: @rental.start_time, table: @rental.table } }
     end
 
     assert_redirected_to rental_url(Rental.last)
@@ -34,7 +34,7 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update rental" do
-    patch rental_url(@rental), params: { rental: { client_id: @rental.client_id, table_game_id: @rental.table_game_id } }
+    patch rental_url(@rental), params: { rental: { board_game_id: @rental.board_game_id, client_id: @rental.client_id, end_time: @rental.end_time, start_time: @rental.start_time, table: @rental.table } }
     assert_redirected_to rental_url(@rental)
   end
 
