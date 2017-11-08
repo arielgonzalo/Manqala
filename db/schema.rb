@@ -51,22 +51,6 @@ ActiveRecord::Schema.define(version: 20171107172933) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "invoice_details", force: :cascade do |t|
-    t.integer "invoice_id"
-    t.string "product"
-    t.string "indications"
-    t.integer "qt_ordered"
-    t.integer "qt_served"
-    t.float "unitary_price"
-    t.float "total_tax"
-    t.float "total_price"
-    t.time "ordered_at"
-    t.time "finalized_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["invoice_id"], name: "index_invoice_details_on_invoice_id"
-  end
-
   create_table "invoice_lines", force: :cascade do |t|
     t.integer "invoice_id"
     t.integer "product_id"
@@ -154,40 +138,10 @@ ActiveRecord::Schema.define(version: 20171107172933) do
     t.index ["table_id"], name: "index_rentals_on_table_id"
   end
 
-  create_table "table_game_tax_assigments", force: :cascade do |t|
-    t.integer "table_game_id"
-    t.integer "tax_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["table_game_id"], name: "index_table_game_tax_assigments_on_table_game_id"
-    t.index ["tax_id"], name: "index_table_game_tax_assigments_on_tax_id"
-  end
-
-  create_table "table_games", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "qt_in_use"
-    t.integer "qt_in_bk"
-    t.float "penalty_cost"
-    t.string "serial"
-    t.string "bin"
-    t.integer "dificulty_level"
-    t.boolean "outdoor_usable"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tables", force: :cascade do |t|
     t.string "name"
     t.boolean "is_outdoor"
     t.string "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "taxes", force: :cascade do |t|
-    t.string "name"
-    t.float "percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
