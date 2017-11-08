@@ -1,6 +1,6 @@
 rails g scaffold Client pid:string name:string email:string phone:string is_active:boolean inactivation_text:string
 rails g scaffold Table name:string is_outdoor:boolean location:string 
-rails g scaffold Category name:string descripcion:string
+rails g scaffold Category name:string description:string
 rails g scaffold Product name:string description:string price:double category:references 
 rails g scaffold Pass start_time:date end_time:date client:references 
 rails g scaffold Order table:references product:references pass:references quantity:integer status:integer date_time:date comment:string
