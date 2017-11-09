@@ -11,17 +11,38 @@
     </div>
   <% end %>
 
-  <% if @category != nil %>
+  <div class="row">
 
-    <% @category.each  do |category| %>
+    <% if @categories != nil %>
 
-      <div class="field">
-        <%= form.label category.name %>
-        <%= form.text_field :product_id, id: :order_product_id %>
-      </div>
+      <% @categories.each  do |category| %>
 
+        <a href="#cat_<%= category.id%>" class="align-center ">
+          <div class="col-xs-12 category_box">
+            <h2 class="centered_text"><%= category.name %></h2>
+          </div>
+        </a>
+
+      <% end %>
     <% end %>
-  <% end %>
+
+  </div>
+
+  
+
+    <% if @categories != nil %>
+
+      <% @categories.each  do |category| %>
+
+        
+          <div style="height: 600px;" class="row" id="cat_<%= category.id %>" >
+            <h2 class="centered_text"><%= category.name %></h2>
+          </div>
+
+      <% end %>
+    <% end %>
+
+  
 
   <div class="field">
     <%= form.label :product_id %>
