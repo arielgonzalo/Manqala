@@ -1,14 +1,16 @@
-rails g scaffold Client pid:string name:string email:string phone:string is_active:boolean inactivation_text:string
-rails g scaffold Table name:string is_outdoor:boolean location:string 
-rails g scaffold Category name:string descripcion:string
-rails g scaffold Product name:string description:string price:double category:references 
-rails g scaffold Pass start_time:date end_time:date client:references 
-rails g scaffold Order table:references product:references pass:references quantity:integer status:integer date_time:date comment:string
-rails g scaffold Board_Game_Category name:string description:string
-rails g scaffold Board_Game name:string description:string quantity:integer backup_quantity:integer replacement_cost:double difficulty:int type:string category:references 
-rails g scaffold Rental client:references board_game:references start_time:date end_time:date table:referencces
-rails g scaffold Invoice client:references table:references user:references subtotal:double taxes:double service:double total:double date_time:date
-rails g scaffold Invoice_line invoice:references product:references pass:references quantity:integer unit_price:double unit_total_price:double total_price:double
+rails g scaffold Client pid:string name:string email:string phone:string is_active:boolean inactivation_text:string --force
+rails g scaffold Table name:string is_outdoor:boolean location:string  --force
+rails g scaffold Category name:string description:string --force
+rails g scaffold Product name:string description:string price:double category:references  --force
+rails g scaffold Pass start_time:date end_time:date client:references  --force
+rails g scaffold Order table:references product:references pass:references quantity:integer status:integer date_time:date comment:string --force
+rails g scaffold Board_Game_Category name:string description:string --force
+rails g scaffold Board_Game name:string description:string quantity:integer backup_quantity:integer replacement_cost:double difficulty:int type:string category:references  --force
+rails g scaffold Rental client:references board_game:references start_time:date end_time:date table:referencces --force
+rails g scaffold Invoice client:references table:references user:references subtotal:double taxes:double service:double total:double date_time:date --force
+rails g scaffold Invoice_line invoice:references product:references pass:references quantity:integer unit_price:double unit_total_price:double total_price:double --force
+rails g scaffold Tax name:string percentage:double
+rails g scaffold Product_Tax_Assigment food:references tax:references
 
 --------------------------------------------------------------------------| Scaffold viejos  |-----------------------------------------------------------------------------
 
@@ -17,7 +19,7 @@ rails g scaffold Access_Granting client:references library_access:references
 rails g scaffold Food name:string description:string price:double 
 rails g scaffold Board_Games name:string description:string qt_in_use:integer qt_in_bk:integer penalty_cost:double serial:string bin:string  dificulty_level:integer outdoor_usable:boolean
 rails g scaffold Rental client:references table_game:references
-rails g scaffold Tax name:string percentage:double
+
 rails g scaffold Food_Tax_Assigment food:references tax:references
 rails g scaffold Board_Game_Tax_Assigment table_game:references  tax:references
 rails g scaffold Invoice date_time:time client:references amount:double tax_amount:double total_amount:double table_number:integer

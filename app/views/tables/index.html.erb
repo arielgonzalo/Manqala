@@ -1,39 +1,53 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tables</h1>
+<div class="container">
+  <h1>MANQALA - Mesas</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Is outdoor</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tables.each do |table| %>
-      <tr>
-        <td><%= table.name %></td>
-        <td><%= table.is_outdoor %></td>
-        <td><%= table.location %></td>
-        <td><%= link_to 'Show', table %></td>
-        <td><%= link_to 'Edit', edit_table_path(table) %></td>
-        <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <table class="table">
+    <thead>
+      <tr class="column">
+        <th>Mesa</th>
+        <th>Exterior</th>
+        <th>Ubicación</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<% @tables.each do |table| %>
-  
-  <div >
-    <%= table.name %>
-  </div>
+    <tbody >
+      <% @tables.each do |table| %>
+        <tr >
+          <td><%= table.name %></td>
+          <td><%= table.is_outdoor %></td>
+          <td><%= table.location %></td>
+          <td><%= link_to 'Show', table %></td>
+          <td><%= link_to 'Edit', edit_table_path(table) %></td>
+          <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% end %>
+<div class = "row text-center align-center">
+  <% table_count = 0 %>
+  <% @tables.each do |table| %>
 
-<br>
+    <a href=<%=table_path(table) %> class="align-center ">
+      <div class="col-xs-6 table_box  <%= table.is_outdoor ? 'outdoor' : 'indoor' %>">
+        <h2><%= table.name %></h2>
+      </div>
+    </a>
 
-<%= link_to 'New Table', new_table_path %>
+    <% if table_count == 2 %>
+      </div>
+      <div class = "row text-center align-center">
+      <% table_count = 0 %>  
+    <% else %>
+      <% table_count = table_count + 1 %>
+    <% end %>  
+
+  <% end %>
+</div>
+  <br>
+
+  <%= link_to 'New Table', new_table_path %>
+</div>

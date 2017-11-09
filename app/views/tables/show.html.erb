@@ -1,19 +1,38 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @table.name %>
-</p>
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Is outdoor:</strong>
-  <%= @table.is_outdoor %>
-</p>
+	<h4 style="color: white; text-align: center;" class=<%= @table.is_outdoor ? 'outdoor' : 'indoor' %>>
+	  <strong><%= @table.is_outdoor ? 'Exterior' : 'Interior' %> - <%= @table.location %></strong>
+	</h4>
 
-<p>
-  <strong>Location:</strong>
-  <%= @table.location %>
-</p>
+	<h2>
+	  <strong>Mesa - </strong>
+	  <%= @table.name %>
+	</h2>
+	<div class="row">
+		<a href="#">
+			<div class="col-xs-6 order_box product" > 
+				<h1 style="	display: table-cell; vertical-align: middle;">
+					<strong>Ordenar alimentos</strong>
+				</h1>
+			</div>
+		</a>
+		<a href="#">
+			<div class="col-xs-6 order_box board_game pull-right" > 
+				<h1 style="	display: table-cell; vertical-align: middle;">
+					<strong>Ordenar Juegos</strong>
+				</h1>
+			</div>
+		</a>
+	</div>
 
-<%= link_to 'Edit', edit_table_path(@table) %> |
-<%= link_to 'Back', tables_path %>
+	<%= link_to 'Edit', edit_table_path(@table) %> |
+
+	
+		<a href=<%= tables_path %> class="pull-right" >
+		  <div style="height: 110px;" class="btn btn-default btn-lg">
+          	<h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</h1>
+          </div>
+        </a>
+    
+

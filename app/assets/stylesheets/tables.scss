@@ -1,3 +1,47 @@
 // Place all the styles related to the Tables controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table_box{
+	height: 200px;
+	max-width: 200px;
+	margin: 10px;
+	position: float;
+	text-align: center;
+	color: white;
+}
+
+.order_box{
+	font-family: 'Roboto Condensed', sans-serif;
+	height: 400px;
+	display: table;
+	overflow: hidden;
+	max-width: 47%;
+	margin: 10px;
+	position: float;
+	text-align: center;
+	color: white;
+}
+
+.center-block {  
+  display: block;  
+  margin-right: auto;  
+  margin-left: auto;  
+} 
+
+.product{
+	background-color: #D9C400;
+}
+
+.board_game{
+	background-color: #59955C;
+}
+
+.outdoor {
+	background-color: #008055;
+	
+}
+
+.indoor {
+	background-color: #80002A;
+}
