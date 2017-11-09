@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   resources :invoice_lines
   resources :board_games
   resources :board_game_categories
-
   resources :categories
-
   resources :passes
   resources :categories do
     
@@ -18,7 +16,7 @@ Rails.application.routes.draw do
     resources :orders do
       resources :products
       resources :passes
-
+    end
   
   end
   resources :invoice_details
