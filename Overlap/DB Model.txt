@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 rails g scaffold Client pid:string name:string email:string phone:string is_active:boolean inactivation_text:string --force
 rails g scaffold Table name:string is_outdoor:boolean location:string  --force
 rails g scaffold Category name:string description:string --force
@@ -11,6 +12,19 @@ rails g scaffold Invoice client:references table:references user:references subt
 rails g scaffold Invoice_line invoice:references product:references pass:references quantity:integer unit_price:double unit_total_price:double total_price:double --force
 rails g scaffold Tax name:string percentage:double
 rails g scaffold Product_Tax_Assigment food:references tax:references
+=======
+rails g scaffold Client pid:string name:string email:string phone:string is_active:boolean inactivation_text:string
+rails g scaffold Table name:string is_outdoor:boolean location:string 
+rails g scaffold Category name:string description:string
+rails g scaffold Product name:string description:string price:double category:references 
+rails g scaffold Pass start_time:date end_time:date client:references 
+rails g scaffold Order table:references product:references pass:references quantity:integer status:integer date_time:date comment:string
+rails g scaffold Board_Game_Category name:string description:string
+rails g scaffold Board_Game name:string description:string quantity:integer backup_quantity:integer replacement_cost:double difficulty:int type:string category:references 
+rails g scaffold Rental client:references board_game:references start_time:date end_time:date table:referencces
+rails g scaffold Invoice client:references table:references user:references subtotal:double taxes:double service:double total:double date_time:date
+rails g scaffold Invoice_line invoice:references product:references pass:references quantity:integer unit_price:double unit_total_price:double total_price:double
+>>>>>>> de72ddbdd4d4afb3f918d5db97f7584724d13462
 
 --------------------------------------------------------------------------| Scaffold viejos  |-----------------------------------------------------------------------------
 

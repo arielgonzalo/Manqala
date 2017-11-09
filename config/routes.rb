@@ -3,7 +3,16 @@ Rails.application.routes.draw do
   resources :invoice_lines
   resources :board_games
   resources :board_game_categories
+
   resources :categories
+
+  resources :passes
+  resources :categories do
+    
+    resources :products
+
+  end
+
   resources :tables do
     
     resources :orders do
