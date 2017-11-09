@@ -12,7 +12,7 @@
       <th>Replacement cost</th>
       <th>Difficulty</th>
       <th>Type</th>
-      <th>Category</th>
+      <th>Board game category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,10 +27,10 @@
         <td><%= board_game.replacement_cost %></td>
         <td><%= board_game.difficulty %></td>
         <td><%= board_game.type %></td>
-        <td><%= board_game.category %></td>
-        <td><%= link_to 'Show', board_game %></td>
-        <td><%= link_to 'Edit', edit_board_game_path(board_game) %></td>
-        <td><%= link_to 'Destroy', board_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= board_game.board_game_category %></td>
+        <td><%= link_to 'Show', board_game_category_board_game %></td>
+        <td><%= link_to 'Edit', edit_board_game_path(board_game_category_board_game) %></td>
+        <td><%= link_to 'Destroy', board_game_category_board_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Board Game', new_board_game_path %>
+<%= link_to 'New Board Game', new_board_game_category_board_game_path %>

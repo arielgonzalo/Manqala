@@ -7,8 +7,7 @@ class CreateBoardGames < ActiveRecord::Migration[5.1]
       t.integer :backup_quantity
       t.float :replacement_cost
       t.integer :difficulty
-      t.string :type
-      t.references :category, foreign_key: true
+      t.references :board_game_category, foreign_key: true
 
       t.timestamps
     end

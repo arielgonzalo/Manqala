@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108013600) do
+ActiveRecord::Schema.define(version: 20171109034829) do
 
   create_table "board_game_categories", force: :cascade do |t|
     t.string "name"
@@ -26,11 +26,14 @@ ActiveRecord::Schema.define(version: 20171108013600) do
     t.integer "backup_quantity"
     t.float "replacement_cost"
     t.integer "difficulty"
-    t.string "type"
-    t.integer "category_id"
+    t.integer "board_game_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_board_games_on_category_id"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.index ["board_game_category_id"], name: "index_board_games_on_board_game_category_id"
   end
 
   create_table "categories", force: :cascade do |t|

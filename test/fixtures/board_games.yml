@@ -5,17 +5,17 @@ one:
   description: MyString
   quantity: 1
   backup_quantity: 1
-  replacement_cost: 
-  difficulty: 
+  replacement_cost: 1.5
+  difficulty: 1
   type: 
-  category: one
+  board_game_category: one
 
 two:
   name: MyString
   description: MyString
   quantity: 1
   backup_quantity: 1
-  replacement_cost: 
-  difficulty: 
+  replacement_cost: 1.5
+  difficulty: 1
   type: 
-  category: two
+  board_game_category: two
