@@ -1,4 +1,4 @@
-<%= form_with(model: order, local: true) do |form| %>
+<%= form_for [@table, @order] do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -11,10 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :table_id %>
-    <%= form.text_field :table_id, id: :order_table_id %>
-  </div>
+  <% if @category != nil %>
+
+    <% @category.each  do |category| %>
+
+      <div class="field">
+        <%= form.label category.name %>
+        <%= form.text_field :product_id, id: :order_product_id %>
+      </div>
+
+    <% end %>
+  <% end %>
 
   <div class="field">
     <%= form.label :product_id %>
