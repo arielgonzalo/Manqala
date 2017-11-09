@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :product_tax_assigments
   resources :invoice_lines
-  resources :board_games
-  resources :board_game_categories
+  resources :board_game_categories do
+
+    resources :board_games
+
+  end
   resources :categories
   resources :passes
   resources :categories do

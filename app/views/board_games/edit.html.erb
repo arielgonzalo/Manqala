@@ -3,4 +3,4 @@
 <%= render 'form', board_game: @board_game %>
 
 <%= link_to 'Show', @board_game %> |
-<%= link_to 'Back', board_games_path %>
+<%= link_to 'Back', board_game_category_board_games_path(@board_game_category, @board_game) %>

@@ -31,14 +31,9 @@
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @board_game.type %>
+  <strong>Foto:</strong>
+  <%= image_tag @board_game.photo.url %>
 </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @board_game.category %>
-</p>
-
-<%= link_to 'Edit', edit_board_game_path(@board_game) %> |
-<%= link_to 'Back', board_games_path %>
+<%= link_to 'Edit', edit_board_game_category_board_game_path(@board_game_category, @board_game) %> |
+<%= link_to 'Back', board_game_category_board_games_path %>

@@ -1,6 +1,6 @@
 class BoardGamesController < ApplicationController
   before_action :set_board_game, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_board_game_category
   # GET /board_games
   # GET /board_games.json
   def index
@@ -25,10 +25,10 @@ class BoardGamesController < ApplicationController
   # POST /board_games.json
   def create
     @board_game = BoardGame.new(board_game_params)
-
+    @board_game.board_game_category = @board_game_category
     respond_to do |format|
       if @board_game.save
-        format.html { redirect_to @board_game, notice: 'Board game was successfully created.' }
+        format.html { redirect_to [@board_game_category, @board_game], notice: 'Board game was successfully created.' }
         format.json { render :show, status: :created, location: @board_game }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class BoardGamesController < ApplicationController
   def update
     respond_to do |format|
       if @board_game.update(board_game_params)
-        format.html { redirect_to @board_game, notice: 'Board game was successfully updated.' }
+        format.html { redirect_to [@board_game_category, @board_game], notice: 'Board game was successfully updated.' }
         format.json { render :show, status: :ok, location: @board_game }
       else
         format.html { render :edit }
@@ -69,6 +69,12 @@ class BoardGamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_game_params
-      params.require(:board_game).permit(:name, :description, :quantity, :backup_quantity, :replacement_cost, :difficulty, :type, :category_id)
+      params.require(:board_game).permit(:name, :description, :quantity, :backup_quantity, :replacement_cost, :difficulty, :board_game_category_id, :photo)
+    end
+
+    def set_board_game_category
+
+      @board_game_category = BoardGameCategory.find(params[:board_game_category_id])
+
     end
 end
