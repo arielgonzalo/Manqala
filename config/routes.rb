@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'kitchen/index'
+
+
   resources :product_tax_assigments
   resources :invoice_lines
   resources :board_game_categories do
