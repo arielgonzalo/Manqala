@@ -27,9 +27,12 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.table = @table
+    @order.product = params[:commit]
+    @order.quantity = params["qt_"+@order.quantity.to_s] 
+    @order.status = 1
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @table, notice: 'Order was successfully created.' }
+        format.html { redirect_to @table, notice: 'Orden creada con éxito.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }

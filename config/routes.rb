@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :tables do
-    
+    get  'admin_index', :on => :collection
     resources :orders do
 
     end
@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   resources :rentals
   resources :clients
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root :to => 'tables#index'
+  root :to => 'tables#administration'
 end

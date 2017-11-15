@@ -35,11 +35,42 @@
       <% @categories.each  do |category| %>
 
         
-          <div style="height: 600px;" class="row" id="cat_<%= category.id %>" >
+          <div class="row" id="cat_<%= category.id %>" >
             <h2 class="centered_text"><%= category.name %></h2>
-          </div>
+          
+
+            <% category.products.order("name asc").each do |product| %>
+
+                <div class="row">
+                  
+                  <div class="col-xs-2">
+                    <img src="<%= product.photo.url %>" height="150" max-width="150">
+                  </div>
+                  <div class="col-xs-3">
+                    <h2><%= product.name %></h2>
+                  </div>
+                  <div class="col-xs-3">
+                    <h4><%= product.description %></h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="field">
+                      <%= form.label "Cantidad" %>
+                      <%= form.number_field :quantity, id: :order_quantity, name: 'qt_' + product.id.to_s %>
+                    </div>
+                      <div class="actions">
+                        <%= form.submit 'Ordenar', name: product.id%>
+                      </div>
+                  </div>
+
+                </div>
+
+
+            <% end %>
+            </div>
+
 
       <% end %>
+
     <% end %>
 
   
