@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_table
+  before_action :set_categories, only: [:new]
   # GET /orders
   # GET /orders.json
   def index
@@ -25,10 +26,13 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order.table = @table
+    @order.product = params[:commit]
+    @order.quantity = params["qt_"+@order.quantity.to_s] 
+    @order.status = 1
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @table, notice: 'Orden creada con éxito.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @table, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -65,6 +69,14 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def set_table
+      @table = Table.find(params[:table_id])
+    end
+
+    def set_categories
+      @categories = Category.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <h1>MANQALA - Mesas</h1>
+
+  <table class="table">
+    <thead>
+      <tr class="column">
+        <th>Mesa</th>
+        <th>Exterior</th>
+        <th>Ubicación</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody >
+      <% @tables.each do |table| %>
+        <tr >
+          <td><%= table.name %></td>
+          <td><%= table.is_outdoor %></td>
+          <td><%= table.location %></td>
+          <td><%= link_to 'Show', table %></td>
+          <td><%= link_to 'Edit', edit_table_path(table) %></td>
+          <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<div class = "row text-center align-center">
+  <% table_count = 0 %>
+  <% @tables.each do |table| %>
+
+    <div class="col-xs-6 table_box  <%= table.is_outdoor ? 'outdoor' : 'indoor' %>">
+      <h2><%=table.name%></h2>
+    </br>
+      <%= link_to edit_table_path(table) do %>
+
+        <div class="btn_edit">
+          <h5 class="centered_text"> Editar </h5> 
+        </div>
+
+      <% end %>
+
+      <%= link_to  table, method: :delete, data: { confirm: 'Are you sure?' } do %>
+
+        <div class="btn_delete center-block">
+          <h5 class="centered_text"> Eliminar </h5>
+        </div>
+
+      <% end %>
+    </div>
+
+
+    <% if table_count == 2 %>
+      </div>
+      <div class = "row text-center align-center">
+      <% table_count = 0 %>  
+    <% else %>
+      <% table_count = table_count + 1 %>
+    <% end %>  
+
+  <% end %>
+</div>
+  <br>
+
+  <%= link_to 'Agregar Mesa', new_table_path, class:'btn btn-success' %>
+</div>

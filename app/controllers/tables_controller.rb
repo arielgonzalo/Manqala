@@ -1,9 +1,14 @@
 class TablesController < ApplicationController
   before_action :set_table, only: [:show, :edit, :update, :destroy]
+  before_action :set_orders, only: [:show]
 
   # GET /tables
   # GET /tables.json
   def index
+    @tables = Table.all
+  end
+
+  def admin_index
     @tables = Table.all
   end
 
@@ -65,6 +70,10 @@ class TablesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_table
       @table = Table.find(params[:id])
+    end
+
+    def set_orders
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

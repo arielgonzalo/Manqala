@@ -10,7 +10,7 @@
 	  <%= @table.name %>
 	</h2>
 	<div class="row">
-		<a href="#">
+		<a href=<%= new_table_order_path(@table) %>>
 			<div class="col-xs-6 order_box product" > 
 				<h1 style="	display: table-cell; vertical-align: middle;">
 					<strong>Ordenar alimentos</strong>
@@ -19,12 +19,14 @@
 		</a>
 		<a href="#">
 			<div class="col-xs-6 order_box board_game pull-right" > 
-				<h1 style="	display: table-cell; vertical-align: middle;">
+				<h1 class="centered_text">
 					<strong>Ordenar Juegos</strong>
 				</h1>
 			</div>
 		</a>
 	</div>
+
+
 
 	<%= link_to 'Edit', edit_table_path(@table) %> |
 
@@ -35,4 +37,3 @@
           </div>
         </a>
     
-
