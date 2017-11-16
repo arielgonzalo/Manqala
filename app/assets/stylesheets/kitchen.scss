@@ -1,3 +1,32 @@
 // Place all the styles related to the kitchen controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.header{
+
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+
+.row_header{
+	
+	background-color: #75dbf0;
+	border: 2px solid;	
+	border-color: #75dbf0;
+	border-radius: 25px;
+	display: table;
+	overflow: hidden;
+	width: 100%;
+
+	margin: 10px;
+	height: 100px;
+
+}
+
+h4 {
+	
+
+}
