@@ -1,5 +1,11 @@
-<h1>New Table</h1>
+<h1>Nueva Mesa</h1>
 
 <%= render 'form', table: @table %>
 
-<%= link_to 'Volver', url_for(:back), class: 'btn btn-info' %>
+<a href=<%= url_for(:back) %> class="pull-right" >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</h1>
+          </div>
+</a>
+
+

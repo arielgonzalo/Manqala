@@ -1,16 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-  <h1>Administración de Mesas</h1>
+  <h1>Administración de Productos por categoría</h1>
 
 <div class = "row text-center align-center">
-  
-  <% @tables.each do |table| %>
 
-    <div class="col-xs-2 table_box  <%= table.is_outdoor ? 'outdoor' : 'indoor' %>">
-      <h2><%=table.name%></h2>
+  <% @categories.each do |category| %>
+
+    <div class="col-xs-2 category_admin_box  ">
+      <h2><%=category.name%></h2>
     </br>
-      <%= link_to edit_table_path(table) do %>
+
+      <%= link_to category_path(category) do %>
+
+        <div class="btn_products">
+          <h5 class="centered_text"> Productos </h5> 
+        </div>
+
+      <% end %>
+
+      <%= link_to edit_category_path(category) do %>
 
         <div class="btn_edit">
           <h5 class="centered_text"> Editar </h5> 
@@ -18,7 +27,7 @@
 
       <% end %>
 
-      <%= link_to  table, method: :delete, data: { confirm: '¿Seguro que desea eliminarla?' } do %>
+      <%= link_to  category, method: :delete, data: { confirm: 'Are you sure?' } do %>
 
         <div class="btn_delete center-block">
           <h5 class="centered_text"> Eliminar </h5>
@@ -26,7 +35,7 @@
 
       <% end %>
     </div>
-
+ 
 
   <% end %>
 </div>
@@ -38,9 +47,9 @@
           </div>
   </a>
 
-  <a href=<%= new_table_path %>  >
+  <a href=<%= new_category_path %>  >
       <div style="height: 110px;" class="btn btn-default btn-lg">
-            <h1 class="display-1"><span class="glyphicon glyphicon-plus-sign"></span>Agregar Mesa</h1>
+            <h1 class="display-1"><span class="glyphicon glyphicon-plus-sign"></span>Agregar Categoría</h1>
       </div>
   </a>
 

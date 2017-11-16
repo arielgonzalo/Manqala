@@ -7,9 +7,14 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
+  def admin_index
+    @categories = Category.all
+  end
+
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @products = @category.products
   end
 
   # GET /categories/new

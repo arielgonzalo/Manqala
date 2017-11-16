@@ -16,6 +16,11 @@
 
 html body
 {
+	border-color: rgba(255,255,255, 0.2);
+}
+
+html body
+{
    color: #FFF !important;
    background-color: #000 ;
 

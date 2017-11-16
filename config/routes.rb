@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :board_games
 
   end
-  resources :categories
+  resources :categories do
+    get  'admin_index', :on => :collection
+  end
   resources :passes
   resources :categories do
     
