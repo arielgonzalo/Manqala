@@ -27,8 +27,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.table = @table
-    @order.product = params[:commit]
-    @order.quantity = params["qt_"+@order.quantity.to_s] 
+    ordered_product = params[:ordered_product].to_i
+    @order.product_id = ordered_product
+    puts "producto ordenado "+params[:ordered_product]
+    @order.quantity = params["qt_"+ordered_product.to_s]
     @order.status = 1
     respond_to do |format|
       if @order.save

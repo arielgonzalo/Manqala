@@ -58,7 +58,7 @@
                       <%= form.number_field :quantity, id: :order_quantity, name: 'qt_' + product.id.to_s %>
                     </div>
                       <div class="actions">
-                        <%= form.submit 'Ordenar', name: product.id%>
+                        <%= form.submit 'Ordenar', name: 'ordered_product' , value: product.id.to_s %>
                       </div>
                   </div>
 

@@ -33,8 +33,10 @@
 
 		<div class = "row">
 
+			<% product = Product.find(order.product_id)%>
+
 		<div class="col-xs-2">
-			<h5> <%= order.product_id %> </h5>
+			<h5> <%= product.name %> </h5>
 		</div>
 
 		<div class="col-xs-1">
