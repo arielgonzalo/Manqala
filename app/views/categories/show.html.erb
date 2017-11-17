@@ -32,7 +32,7 @@
 
 		<div class="col-xs-2 button_column">
 
-			<%= link_to edit_category_product_path(product, @category) do %>
+			<%= link_to edit_category_product_path(@category, product) do %>
 
 		        <div class="btn_edit">
 		          <h5 class="centered_text"> Editar </h5> 
@@ -40,7 +40,7 @@
 
 		    <% end %>
 
-			<%= link_to  @product, method: :delete, data: { confirm: '¿Seguro que desea eliminar el producto?' } do %>
+			<%= link_to  category_product_path(@category, product), method: :delete, data: { confirm: '¿Seguro que desea eliminar el producto?' } do %>
 
 			    <div class="btn_products center-block">
 			        <h5 class="centered_text"> Eliminar </h5>
@@ -52,7 +52,7 @@
 	</div>
 
 <% end %>
-<a href=<%= url_for(:back) %> class="pull-right" >
+<a href=<%= admin_index_categories_path %> class="pull-right" >
       <div style="height: 110px;" class="btn btn-default btn-lg">
             <h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</h1>
       </div>
