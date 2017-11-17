@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <h1>Administración de Productos por categoría</h1>
+
+<div class = "row text-center align-center">
+
+  <% @categories.each do |category| %>
+
+    <div class="col-xs-2 category_admin_box  ">
+      <h2><%=category.name%></h2>
+    </br>
+
+      <%= link_to category_path(category) do %>
+
+        <div class="btn_products">
+          <h5 class="centered_text"> Productos </h5> 
+        </div>
+
+      <% end %>
+
+      <%= link_to edit_category_path(category) do %>
+
+        <div class="btn_edit">
+          <h5 class="centered_text"> Editar </h5> 
+        </div>
+
+      <% end %>
+
+      <%= link_to  category, method: :delete, data: { confirm: 'Are you sure?' } do %>
+
+        <div class="btn_delete center-block">
+          <h5 class="centered_text"> Eliminar </h5>
+        </div>
+
+      <% end %>
+    </div>
+ 
+
+  <% end %>
+</div>
+  <br>
+
+  <a href=<%= root_path %> class="pull-right" >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</h1>
+          </div>
+  </a>
+
+  <a href=<%= new_category_path %>  >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-plus-sign"></span>Agregar Categoría</h1>
+      </div>
+  </a>
+
+
+</div>

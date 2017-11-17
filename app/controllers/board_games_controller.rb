@@ -7,6 +7,10 @@ class BoardGamesController < ApplicationController
     @board_games = BoardGame.all
   end
 
+  def admin_index 
+    @games = BoardGame.all
+  end
+
   # GET /board_games/1
   # GET /board_games/1.json
   def show

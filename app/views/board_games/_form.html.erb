@@ -11,44 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :board_game_name %>
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, class: "form-control", id: :board_game_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :board_game_description %>
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_field :description, class: "form-control", id: :board_game_description %>
   </div>
 
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity, id: :board_game_quantity %>
+  <div class="form-group">
+    <%= form.label "Cantidad en uso" %>
+    <%= form.number_field :quantity, class: "form-control", id: :board_game_quantity %>
   </div>
 
-  <div class="field">
-    <%= form.label :backup_quantity %>
-    <%= form.number_field :backup_quantity, id: :board_game_backup_quantity %>
+  <div class="form-group">
+    <%= form.label "Cantidad en respaldo" %>
+    <%= form.number_field :backup_quantity, class: "form-control", id: :board_game_backup_quantity %>
   </div>
 
-  <div class="field">
-    <%= form.label :replacement_cost %>
-    <%= form.text_field :replacement_cost, id: :board_game_replacement_cost %>
+  <div class="form-group">
+    <%= form.label "Costo de reposición (cobro al cliente)" %>
+    <%= form.text_field :replacement_cost, class: "form-control", id: :board_game_replacement_cost %>
   </div>
 
-  <div class="field">
-    <%= form.label :difficulty %>
-    <%= form.number_field :difficulty, id: :board_game_difficulty %>
+  <div class="form-group">
+    <%= form.label "Nivel de dificultad" %>
+    <%= form.number_field :difficulty, class: "form-control", id: :board_game_difficulty %>
   </div>
 
 
-  <div class="field"
+  <div class="form-group">
     <p>
-      <%= form.file_field :photo %>
+       Ilustración : <%= form.file_field :photo %>
     </p>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+
+    <%= button_tag(type: 'submit') do %>
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-ok-sign"></span>Guardar</h1>
+      </div>
+    <% end %>
   </div>
 <% end %>
