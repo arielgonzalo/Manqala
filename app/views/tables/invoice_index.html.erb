@@ -3,7 +3,7 @@
 <div class="container">
   <h1>Administración de Mesas</h1>
 
-<div class = "row text-center align-center">
+<div id="tables_with_orders" class = "row text-center align-center">
   
   <% @tables.each do |table| %>
 
@@ -23,6 +23,18 @@
 
 
   <% end %>
+
+<div class="">
+  <% @invoices = Invoice.last(10) %>
+  <% @invoices.reverse.each do |invoice|%>
+    <div class="row invoice_box">
+      <div class="col-xs-1"><%=invoice.id%> - </div>
+      <div class="col-xs-2"> Mesa: <%=invoice.table.name%></div>
+      <div class="col-xs-2 pull-right"><%= link_to 'Imprimir factura', invoice, :target => "_blank" , class:'btn btn-default'%></div>
+    </div>
+  <% end %>
+</div>
+
 </div>
   <br>
 
@@ -40,3 +52,12 @@
 
 
 </div>
+
+<script type="text/javascript">
+
+  function loadtable() {
+      $('#tables_with_orders').load("invoice_index #tables_with_orders");
+  }
+  
+  setInterval(loadtable, 5000);
+</script>
