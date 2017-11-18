@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :mark_as_completed_kitchen, :mark_as_completed_bar]
   before_action :set_table
   before_action :set_categories, only: [:new]
   # GET /orders
@@ -29,8 +29,8 @@ class OrdersController < ApplicationController
     @order.table = @table
     ordered_product = params[:ordered_product].to_i
     @order.product_id = ordered_product
-    puts "producto ordenado "+params[:ordered_product]
     @order.quantity = params["qt_"+ordered_product.to_s]
+    @order.comment = params["com_"+ordered_product.to_s]
     @order.status = 1
     respond_to do |format|
       if @order.save
@@ -64,6 +64,22 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def mark_as_completed_kitchen
+    @order = Order.find(params[:id])
+    @order.update_attributes(:status => 3)
+    if @order.save
+       redirect_to kitchen_index_path
+    end
+  end
+
+  def mark_as_completed_bar
+    @order = Order.find(params[:id])
+    @order.update_attributes(:status => 3)
+    if @order.save
+       redirect_to bar_index_path
     end
   end
 

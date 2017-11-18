@@ -20,10 +20,6 @@
 		</div>
 
 		<div class="col-xs-2 header">
-			<h4> Comentario </h4>
-		</div>
-
-		<div class="col-xs-2 header">
 			<h4> Pedido Completado </h4>
 		</div>
 
@@ -32,48 +28,34 @@
 	<div id = "orders_table" >
 		<% @orders.each do |order| %>
 
-		<div id="table">
+			<div id="table">
 
-				<div class = "row">
+					<div class = "row row_field">
 
-					<% product = Product.find(order.product_id)%>
+						<% product = Product.find(order.product_id)%>
+						<% table = Table.find(order.table_id)%>
+						<div class="col-xs-2">
+							<h5> <%= product.name %> </h5>
+						</div>
 
-				<div class="col-xs-2">
-					<h5> <%= product.name %> </h5>
-				</div>
+						<div class="col-xs-1">
+							<h5> <%= order.quantity %> </h5>
+						</div>
 
-				<div class="col-xs-1">
-					<h5> <%= order.quantity %> </h5>
-				</div>
+						<div class="col-xs-2">
+							<h5> <%= table.name %> </h5>
+						</div>
 
-				<div class="col-xs-2">
-					<h5> <%= order.table_id %> </h5>
-				</div>
+						<div class="col-xs-2">
+							<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
+						</div>
 
-				<div class="col-xs-2">
-					<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
-				</div>
-
-<<<<<<< HEAD
-			<div class="col-xs-2">
-				<div class="btn_completed">
-			          <h5 class="centered_text"> Completado </h5> 
-			    </div> 
-			</div>
-=======
-				<div class="col-xs-2">
-					<p> <%= order.comment %> </p>
-				</div>
-
-				<div class="col-xs-2">
-					<div class="btn_completed">
-				          <h5 class="centered_text"> Completado </h5> 
-				        </div> 
-				</div>
-
-				</div>
->>>>>>> 8be4ab0eb40cc53a789513449071eb4c3023a01d
-
+						<div class="col-xs-2 button_column"  >
+							<div class="btn_complete">
+						          <%= link_to "completado", mark_as_completed_kitchen_table_order_path(table, order), class: "text_btn" %>
+						        </div> 
+						</div>
+					</div>
 			</div>
 
 		<% end %>
@@ -89,13 +71,6 @@
 
 	});
 	function loadtable() {
-<<<<<<< HEAD
-    	$('#orders_table').load("index #orders_table");
+    	 $('#orders_table').load("index #orders_table");
 	}
-	
-	setInterval(loadtable, 5000);
-=======
-    	$("#orders_table").load(window.location.href + "#table");
-	}
->>>>>>> 8be4ab0eb40cc53a789513449071eb4c3023a01d
 </script>

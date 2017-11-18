@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   resources :tables do
     get  'admin_index', :on => :collection
     resources :orders do
-
+      member do
+            get 'mark_as_completed_bar' => "orders#mark_as_completed_bar"
+            get 'mark_as_completed_kitchen' => "orders#mark_as_completed_kitchen"
+          end
     end
   
   end
