@@ -59,7 +59,7 @@
 			<div class="col-xs-2">
 				<div class="btn_completed">
 			          <h5 class="centered_text"> Completado </h5> 
-			        </div> 
+			    </div> 
 			</div>
 
 			</div>
@@ -71,9 +71,8 @@
 
 <script type="text/javascript">
 	function loadtable() {
-    	$('#orders_table').load("#orders_table");
+    	$('#orders_table').load("index #orders_table");
 	}
-
-	loadtable();
-	setInterval(loadtable(), 5000);
+	
+	setInterval(loadtable, 5000);
 </script>
