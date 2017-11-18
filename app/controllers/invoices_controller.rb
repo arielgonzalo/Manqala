@@ -15,6 +15,9 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new
+    @table = Table.find(params[:table])
+    @invoice.table_id = @table_id
+    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE STATUS < 5 AND TABLE_ID = '?'", @table.id])
   end
 
   # GET /invoices/1/edit
@@ -25,7 +28,6 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
     respond_to do |format|
       if @invoice.save
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
@@ -49,6 +51,21 @@ class InvoicesController < ApplicationController
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def generate_invoice
+    @invoice = Invoice.new
+    @table = Table.find(params[:table])
+    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE STATUS < 5 AND TABLE_ID = '?'", @table.id])
+    total = 0
+    @orders.each do |order|
+      product = Product.find(order.product_id)
+      line_total = order.quantity * product.price
+      total = total + line_total
+    end
+    Invoice.create( {:table_id=> @table.id, :total => total })
+
   end
 
   # DELETE /invoices/1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117205909) do
+ActiveRecord::Schema.define(version: 20171118155830) do
 
   create_table "board_game_categories", force: :cascade do |t|
     t.string "name"
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 20171117205909) do
   create_table "invoices", force: :cascade do |t|
     t.integer "client_id"
     t.integer "table_id"
-    t.integer "user_id"
     t.float "subtotal"
     t.float "taxes"
     t.float "service"
@@ -83,7 +82,6 @@ ActiveRecord::Schema.define(version: 20171117205909) do
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["table_id"], name: "index_invoices_on_table_id"
-    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|

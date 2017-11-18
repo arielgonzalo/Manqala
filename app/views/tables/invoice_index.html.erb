@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <h1>Administración de Mesas</h1>
+
+<div class = "row text-center align-center">
+  
+  <% @tables.each do |table| %>
+
+    <div class="col-xs-2 table_box  <%= table.is_outdoor ? 'outdoor' : 'indoor' %>">
+      <h2><%=table.name%></h2>
+    </br>
+      <%= button_to generate_invoice_invoices_path( :table => table.id), calss:'btn btn-default' do %>
+
+        <div class="">
+          <h5 class=""> Facturar </h5> 
+        </div>
+
+      <% end %>
+
+
+    </div>
+
+
+  <% end %>
+</div>
+  <br>
+
+  <a href=<%= root_path %> class="pull-right" >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</h1>
+          </div>
+  </a>
+
+  <a href=<%= new_table_path %>  >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-plus-sign"></span>Agregar Mesa</h1>
+      </div>
+  </a>
+
+
+</div>

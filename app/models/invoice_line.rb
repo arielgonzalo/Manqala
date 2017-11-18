@@ -1,5 +1,5 @@
 class InvoiceLine < ApplicationRecord
-  belongs_to :invoice
-  belongs_to :product
-  belongs_to :pass
+  belongs_to :invoice, optional: true
+  belongs_to :product, optional: true
+  belongs_to :pass, optional: true
 end

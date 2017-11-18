@@ -12,6 +12,10 @@ class TablesController < ApplicationController
     @tables = Table.all
   end
 
+  def invoice_index
+    @tables = Table.find_by_sql(["SELECT * FROM TABLES WHERE ID IN (SELECT DISTINCT TABLE_ID FROM ORDERS WHERE STATUS < 5)"])
+  end
+
   # GET /tables/1
   # GET /tables/1.json
   def show

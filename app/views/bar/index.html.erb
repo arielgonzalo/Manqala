@@ -75,12 +75,9 @@
 
 <script type="text/javascript">
 
-	$(document).ready(function () {
-    // will call refreshPartial every 5 seconds
-    setInterval(loadtable, 5000)
-
-	});
 	function loadtable() {
-    	$("#orders_table").load(window.location.href + "#table");
+    	$('#orders_table').load("index #orders_table");
 	}
+	
+	setInterval(loadtable, 5000);
 </script>

@@ -21,13 +21,16 @@ Rails.application.routes.draw do
 
   resources :tables do
     get  'admin_index', :on => :collection
+    get  'invoice_index', :on => :collection
     resources :orders do
 
     end
   
   end
   resources :invoice_details
-  resources :invoices
+  resources :invoices do
+    post 'generate_invoice' => "invoices#generate_invoice", :on => :collection
+  end
   resources :taxes
   resources :rentals
   resources :clients

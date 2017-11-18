@@ -1,5 +1,6 @@
 class InvoiceLinesController < ApplicationController
   before_action :set_invoice_line, only: [:show, :edit, :update, :destroy]
+  helper_method :generate_invoice_line
 
   # GET /invoice_lines
   # GET /invoice_lines.json
@@ -15,6 +16,16 @@ class InvoiceLinesController < ApplicationController
   # GET /invoice_lines/new
   def new
     @invoice_line = InvoiceLine.new
+  end
+
+  def generate_invoice_line(*args)
+
+    @invoice = params[:invoice]
+    @product = Product.find(params[:product_id])
+    total = @product.price * params[:quantity]
+
+    InvoiceLine.create( {:invoice_id=> @invoice, :product_id => @product_id, :unit_price => @product.price, :total => total })
+    
   end
 
   # GET /invoice_lines/1/edit

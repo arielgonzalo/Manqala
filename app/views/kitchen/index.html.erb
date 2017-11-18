@@ -54,13 +54,6 @@
 					<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
 				</div>
 
-<<<<<<< HEAD
-			<div class="col-xs-2">
-				<div class="btn_completed">
-			          <h5 class="centered_text"> Completado </h5> 
-			    </div> 
-			</div>
-=======
 				<div class="col-xs-2">
 					<p> <%= order.comment %> </p>
 				</div>
@@ -72,7 +65,7 @@
 				</div>
 
 				</div>
->>>>>>> 8be4ab0eb40cc53a789513449071eb4c3023a01d
+
 
 			</div>
 
@@ -83,19 +76,9 @@
 
 <script type="text/javascript">
 
-	$(document).ready(function () {
-    // will call refreshPartial every 5 seconds
-    setInterval(loadtable, 5000)
-
-	});
 	function loadtable() {
-<<<<<<< HEAD
     	$('#orders_table').load("index #orders_table");
 	}
 	
 	setInterval(loadtable, 5000);
-=======
-    	$("#orders_table").load(window.location.href + "#table");
-	}
->>>>>>> 8be4ab0eb40cc53a789513449071eb4c3023a01d
 </script>

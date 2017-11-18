@@ -1,7 +1,7 @@
 <%= form_with(model: invoice, local: true) do |form| %>
   <% if invoice.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+      <h3><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h3>
 
       <ul>
       <% invoice.errors.full_messages.each do |message| %>
@@ -11,45 +11,47 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :client_id %>
-    <%= form.text_field :client_id, id: :invoice_client_id %>
-  </div>
+   <h3><strong>Mesa: </strong> <%= @table.name %> </h3>
 
-  <div class="field">
-    <%= form.label :table_id %>
-    <%= form.text_field :table_id, id: :invoice_table_id %>
-  </div>
+   <div class="row">
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :invoice_user_id %>
-  </div>
+     <div class="col-xs-1">
+        <h3>Cant</h3>      
+      </div>
+      <div class="col-xs-2">
+        <h3>Proucto</h3>     
+      </div>
+      <div class="col-xs-1">
+        <h3>Precio</h3>     
+      </div>
+      <div class="col-xs-1">
+        <h3>Total</h3>     
+      </div>
 
-  <div class="field">
-    <%= form.label :subtotal %>
-    <%= form.text_field :subtotal, id: :invoice_subtotal %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :taxes %>
-    <%= form.text_field :taxes, id: :invoice_taxes %>
-  </div>
+   <% @orders.each do |order|  %>
 
-  <div class="field">
-    <%= form.label :service %>
-    <%= form.text_field :service, id: :invoice_service %>
-  </div>
+    <% product = Product.find(order.product_id) %>
 
-  <div class="field">
-    <%= form.label :total %>
-    <%= form.text_field :total, id: :invoice_total %>
-  </div>
+    <div class="row">
+      <div class="col-xs-1">
+        <h4><%= order.quantity %></h4>      
+      </div>
+      <div class="col-xs-2">
+        <h4><%= product.name %></h4>      
+      </div>
+      <div class="col-xs-1">
+        <h4><%= product.price %></h4>      
+      </div>
+      <div class="col-xs-1">
+        <h4><%= product.price * order.quantity %></h4>      
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :date_time %>
-    <%= form.date_select :date_time, id: :invoice_date_time %>
-  </div>
+   <%end%>
+
+
 
   <div class="actions">
     <%= form.submit %>
