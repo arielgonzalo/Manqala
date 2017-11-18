@@ -29,39 +29,51 @@
 
 	</div>
 
-	<% @orders.each do |order| %>
+	<div id = "orders_table" >
+		<% @orders.each do |order| %>
 
-		<div class = "row">
+			<div class = "row">
 
-			<% product = Product.find(order.product_id)%>
+				<% product = Product.find(order.product_id)%>
 
-		<div class="col-xs-2">
-			<h5> <%= product.name %> </h5>
-		</div>
+			<div class="col-xs-2">
+				<h5> <%= product.name %> </h5>
+			</div>
 
-		<div class="col-xs-1">
-			<h5> <%= order.quantity %> </h5>
-		</div>
+			<div class="col-xs-1">
+				<h5> <%= order.quantity %> </h5>
+			</div>
 
-		<div class="col-xs-2">
-			<h5> <%= order.table_id %> </h5>
-		</div>
+			<div class="col-xs-2">
+				<h5> <%= order.table_id %> </h5>
+			</div>
 
-		<div class="col-xs-2">
-			<h5> <%= order.date_time %> </h5>
-		</div>
+			<div class="col-xs-2">
+				<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
+			</div>
 
-		<div class="col-xs-2">
-			<p> <%= order.comment %> </p>
-		</div>
+			<div class="col-xs-2">
+				<p> <%= order.comment %> </p>
+			</div>
 
-		<div class="col-xs-2">
-			<h5>  </h5>
-		</div>
+			<div class="col-xs-2">
+				<div class="btn_completed">
+			          <h5 class="centered_text"> Completado </h5> 
+			        </div> 
+			</div>
 
-		</div>
+			</div>
 
-	<% end %>
+		<% end %>
 
+	</div>
 </div>
 
+<script type="text/javascript">
+	function loadtable() {
+    	$('#orders_table').load("#orders_table");
+	}
+
+	loadtable();
+	setInterval(loadtable(), 5000);
+</script>

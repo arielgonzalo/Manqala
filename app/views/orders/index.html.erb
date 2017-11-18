@@ -19,16 +19,16 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.table %></td>
+        <td><%= order.table.name %></td>
         <td><%= order.product %></td>
         <td><%= order.pass %></td>
         <td><%= order.quantity %></td>
         <td><%= order.status %></td>
-        <td><%= order.date_time %></td>
+        <td><%= order.created_at %></td>
         <td><%= order.comment %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', table_orders_url %></td>
+        <td><%= link_to 'Edit', edit_table_order_path(@table, order) %></td>
+        <td><%= link_to 'Destroy', table_orders_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +39,4 @@
 
 
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to 'New Order', new_table_order_path %>
