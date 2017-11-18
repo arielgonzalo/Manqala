@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'kitchen/index'
-
+  get 'bar/index'
 
   resources :product_tax_assigments
   resources :invoice_lines
