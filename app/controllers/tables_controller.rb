@@ -15,6 +15,7 @@ class TablesController < ApplicationController
   # GET /tables/1
   # GET /tables/1.json
   def show
+    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE status < 5 AND TABLE_id = '?' ORDER BY created_at ASC", @table.id])
   end
 
   # GET /tables/new

@@ -26,9 +26,73 @@
 		</a>
 	</div>
 
+	<div class="orders">
+
+		<div class="row row_header">
+
+			<div class="col-xs-2 header">
+				<h4> Producto </h4>
+			</div>
+
+			<div class="col-xs-1 header">
+				<h4> Cantidad </h4>
+			</div>
 
 
-	<%= link_to 'Edit', edit_table_path(@table) %> |
+			<div class="col-xs-2 header">
+				<h4> Hora Pedido </h4>
+			</div>
+
+			<div class="col-xs-2 header">
+				<h4> Comentario </h4>
+			</div>
+
+			<div class="col-xs-2 header">
+				<h4> Estado </h4>
+			</div>
+
+		</div>
+		
+		<div class="order_line">
+				<% @orders.each do |order| %>
+
+			<div id="table">
+
+					<div class = "row">
+
+						<% product = Product.find(order.product_id)%>
+
+					<div class="col-xs-2">
+						<h5> <%= product.name %> </h5>
+					</div>
+
+					<div class="col-xs-1">
+						<h5> <%= order.quantity %> </h5>
+					</div>
+
+
+					<div class="col-xs-2">
+						<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
+					</div>
+
+					<div class="col-xs-2">
+						<p> <%= order.comment %> </p>
+					</div>
+
+					<div class="col-xs-2">
+						<p> <%= order.status %> </p>
+					</div>
+
+					</div>
+
+				</div>
+
+			<% end %>
+		</div>
+
+	</div>
+
+
 
 	
 		<a href=<%= tables_path %> class="pull-right" >
