@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to @table, notice: 'Orden creada con éxito.' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { redirect_to new_table_order_path(@table), notice: 'Ingrese la cantidad!.' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
