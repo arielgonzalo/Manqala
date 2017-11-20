@@ -13,7 +13,7 @@ class TablesController < ApplicationController
   end
 
   def invoice_index
-    @tables = Table.find_by_sql(["SELECT * FROM TABLES WHERE ID IN (SELECT DISTINCT TABLE_ID FROM ORDERS WHERE STATUS < 5)"])
+    @tables = Table.find_by_sql(["SELECT * FROM TABLES WHERE ID IN (SELECT DISTINCT TABLE_ID FROM ORDERS WHERE invoiced = 'f')"])
   end
 
   # GET /tables/1
