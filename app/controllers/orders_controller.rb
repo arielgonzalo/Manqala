@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to @table, notice: 'Orden creada con éxito.' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { redirect_to new_table_order_path(@table), notice: 'Ingrese la cantidad!.' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to @table, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

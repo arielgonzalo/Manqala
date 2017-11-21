@@ -12,12 +12,17 @@
 
   <div class="row">
 
+    <h4 style="color: white; text-align: center; " class=<%= @table.is_outdoor ? 'outdoor' : 'indoor' %>>
+    <strong>Mesa: <%=@table.name%> - <%= @table.is_outdoor ? 'Exterior' : 'Interior' %> - <%= @table.location %></strong>
+    </h4>
+
+
     <% if @categories != nil %>
 
       <% @categories.each  do |category| %>
 
         <a href="#cat_<%= category.id%>" class="align-center ">
-          <div class="col-xs-12 category_box">
+          <div class="col-xs-3 category_box">
             <h2 class="centered_text"><%= category.name %></h2>
           </div>
         </a>
@@ -34,9 +39,9 @@
       <div class="row" id="cat_<%= category.id %>" >
         <h2 class="centered_text"><%= category.name %></h2>
         <% category.products.order("name asc").each do |product| %>
-          <div class="row">
+          <div class="row product_box">
             <div class="col-xs-2">
-              <img src="<%= product.photo.url %>" height="150" max-width="150">
+              <img src="<%= product.photo.url %>" class="img-rounded img-responsive">
             </div>
             <div class="col-xs-3">
               <h2><%= product.name %></h2>
@@ -45,16 +50,20 @@
               <h4><%= product.description %></h4>
             </div>
             
-            <div class="col-xs-3">
-              <div class="field">
-                <%= form.label "Cantidad" %>
-                <%= form.number_field :quantity, id: :order_quantity, name: 'qt_' + product.id.to_s %>
-                  
+            <div class="col-xs-2">
+              
+              <div class="form-group">
+                <%= form.label "Cantidad", class:"form-label" %>
+                <%= form.number_field :quantity, id: :order_quantity, name: 'qt_' + product.id.to_s, class:"form-control" %>
               </div>
-              <div class="actions">
+
+            </div>
+              <div class="actions col-xs-2">
+              
+                <%= form.label "Orenar", class:"form-label" %>
                 <%= form.button 'Ordenar', value: product.id.to_s, name: 'ordered_product', class: 'btn btn-default', type: 'submit' %>
                   
-              </div>
+              
             </div>
           </div>
         <% end %>
@@ -62,7 +71,7 @@
     <% end %>
   <% end %>
 
-<div>
+<div style="height: 0; width: 0; overflow: hidden;">
   <%= form.text_field :pass_id, id: :order_pass_id %>
 </div>
 

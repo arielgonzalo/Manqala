@@ -51,6 +51,10 @@
 				<h4> Estado </h4>
 			</div>
 
+			<div class="col-xs-2">
+				<h4>Cancelar Orden</h4>
+			</div>
+
 		</div>
 		
 		<div class="order_line">
@@ -62,26 +66,30 @@
 
 						<% product = Product.find(order.product_id)%>
 
-					<div class="col-xs-2">
-						<h5> <%= product.name %> </h5>
-					</div>
+						<div class="col-xs-2">
+							<h5> <%= product.name %> </h5>
+						</div>
 
-					<div class="col-xs-1">
-						<h5> <%= order.quantity %> </h5>
-					</div>
+						<div class="col-xs-1">
+							<h5> <%= order.quantity %> </h5>
+						</div>
 
 
-					<div class="col-xs-2">
-						<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
-					</div>
+						<div class="col-xs-2">
+							<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
+						</div>
 
-					<div class="col-xs-2">
-						<p> <%= order.comment %> </p>
-					</div>
+						<div class="col-xs-2">
+							<p> <%= order.comment %> </p>
+						</div>
 
-					<div class="col-xs-2">
-						<p> <%= order.status %> </p>
-					</div>
+						<div class="col-xs-2">
+							<p> <%= order.status %> </p>
+						</div>
+
+						<div>
+							<%= link_to 'Cancelar Orden',table_order_path(@table, order), method: :delete, data: { confirm: '¿Cancelar Orden?' }, class:'btn btn-danger ' %> 
+						</div>
 
 					</div>
 
