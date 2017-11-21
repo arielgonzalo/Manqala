@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118155830) do
+ActiveRecord::Schema.define(version: 20171119004225) do
 
   create_table "board_game_categories", force: :cascade do |t|
     t.string "name"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20171118155830) do
     t.integer "table_id"
     t.integer "product_id"
     t.integer "pass_id"
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.integer "status"
     t.date "date_time"
     t.string "comment"
