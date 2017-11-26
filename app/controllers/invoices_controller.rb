@@ -17,7 +17,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     @table = Table.find(params[:table])
     @invoice.table_id = @table_id
-    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE STATUS < 5 AND TABLE_ID = '?'", @table.id])
+    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE invoiced = 'f' AND TABLE_ID = '?'", @table.id])
   end
 
   # GET /invoices/1/edit
@@ -57,7 +57,7 @@ class InvoicesController < ApplicationController
   def generate_invoice
     @invoice = Invoice.new
     @table = Table.find(params[:table])
-    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE STATUS < 5 AND TABLE_ID = '?'", @table.id])
+    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE invoiced = 'f' AND TABLE_ID = '?'", @table.id])
     total = 0
     @orders.each do |order|
       product = Product.find(order.product_id)
