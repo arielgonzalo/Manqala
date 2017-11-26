@@ -22,6 +22,14 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  def mark_as_served
+    @order = Order.find(params[:id])
+    @order.update_attributes(:status => 4)
+    if @order.save
+       redirect_to table_path(@table)
+    end
+  end
+
   # POST /orders
   # POST /orders.json
   def create
