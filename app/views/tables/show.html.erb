@@ -10,22 +10,22 @@
 	  <%= @table.name %>
 	</h2>
 	<div class="row">
-		<div class=" col-xs-12 center_content">
-			<a href=<%= new_table_order_path(@table) %>>
-				<div class="col-xs-5 order_box product" > 
-					<h1 class="centered_text">
-						<strong>Ordenar alimentos</strong>
-					</h1>
-				</div>
-			</a>
-			<a href="#">
-				<div class="col-xs-5 order_box board_game" > 
-					<h1 class="centered_text">
-						<strong>Ordenar Juegos</strong>
-					</h1>
-				</div>
-			</a>
-		</div>
+		<div class="col-xs-1"></div>
+		<a href=<%= new_table_order_path(@table) %>>
+			<div class="col-xs-5 order_box product" > 
+				<h1 class="centered_text">
+					<strong>Ordenar alimentos</strong>
+				</h1>
+			</div>
+		</a>
+		<a href="#">
+			<div class="col-xs-5 order_box board_game" > 
+				<h1 class="centered_text">
+					<strong>Ordenar Juegos</strong>
+				</h1>
+			</div>
+		</a>
+		<div class="col-xs-1"></div>
 	</div>
 
 	<div class="orders">
