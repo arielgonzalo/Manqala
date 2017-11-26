@@ -3,11 +3,13 @@
 <div class="container">
   <h1>Mesas</h1>
 
-<div class = "row text-center align-center">
+<div id="tables" class = "row text-center align-center">
+  
   <% @tables.each do |table| %>
 
     <a href=<%=table_path(table) %> class="align-center ">
-      <div class="col-xs-3 table_box  <%= table.is_outdoor ? 'outdoor' : 'indoor' %>">
+    	<% ready_orders = Order.find_by_sql(["Select * from orders where table_id = '?' and status = '3' and invoiced = 'f'", table.id])%>
+      <div class="col-xs-3 table_box <%= ready_orders.any? ? 'order_ready_table' : ''%> <%= table.is_outdoor ? 'outdoor' : 'indoor' %>">
         <h2><%= table.name %></h2>
       </div>
     </a>
@@ -15,7 +17,16 @@
 
   <% end %>
 </div>
-  <br>
+  </br>
+
+  <script type="text/javascript">
+
+	function loadtable() {
+    	$('#tables').load("tables #tables");
+	}
+	
+	setInterval(loadtable, 10000);
+</script>
 
 
 
