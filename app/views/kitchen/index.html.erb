@@ -46,26 +46,20 @@
 							<h5> <%= table.name %> </h5>
 						</div>
 
-				<div class="col-xs-2">
-					<h5> <%= order.table_id %> </h5>
-				</div>
-
-				<div class="col-xs-2">
-					<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
-				</div>
-
-				<div class="col-xs-2">
-					<p> <%= order.comment %> </p>
-				</div>
 						<div class="col-xs-2">
 							<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
 						</div>
 
+						<div class="col-xs-2">
+							<p> <%= order.comment %> </p>
+						</div>
+
 
 						<div class="col-xs-2 button_column"  >
-							<div class="btn_complete">
-						          <%= link_to "completado", mark_as_completed_kitchen_table_order_path(table, order), class: "text_btn" %>
-						        </div> 
+							
+						          <%= link_to mark_as_completed_kitchen_table_order_path(table, order) do %>
+						        	<div class="btn_complete"> <h4>Listo</h4> </div>
+						          <%end%> 
 						</div>
 					</div>
 			</div>

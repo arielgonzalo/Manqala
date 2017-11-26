@@ -86,7 +86,14 @@
 						</div>
 
 						<div class="col-xs-2">
-							<p> <%= order.status %> </p>
+							<% status = "Ordenado"%>
+							<% if order.status == 3  %>
+								<% status = "Preparado" %>
+							<% elsif order.status == 4  %>
+									<% status = "Servido" %>
+									
+							<%end%>
+							<h5> <%= status %> </h5>
 						</div>
 
 						<div>
