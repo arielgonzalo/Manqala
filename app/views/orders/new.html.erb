@@ -1,5 +1,13 @@
 <h1>Pedido de productos</h1>
 
+<div class="pull-right" style=": 10px" >
+	<a href=<%= url_for(:back) %> class="pull-right" style="position: fixed">
+	      <div style="height: 110px;" class="btn btn-default btn-lg">
+	            <h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span></h1>
+	          </div>
+	</a>
+</div>
+
 <%= render 'form', order: @order %>
 
 
