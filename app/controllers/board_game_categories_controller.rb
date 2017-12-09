@@ -7,9 +7,15 @@ class BoardGameCategoriesController < ApplicationController
     @board_game_categories = BoardGameCategory.all
   end
 
+
+  def admin_index
+    @board_game_categories = BoardGameCategory.all
+  end
+
   # GET /board_game_categories/1
   # GET /board_game_categories/1.json
   def show
+    @board_games = @board_game_category.board_games
   end
 
   # GET /board_game_categories/new
@@ -28,7 +34,7 @@ class BoardGameCategoriesController < ApplicationController
 
     respond_to do |format|
       if @board_game_category.save
-        format.html { redirect_to @board_game_category, notice: 'Board game category was successfully created.' }
+        format.html { redirect_to admin_index_board_game_categories_path, notice: 'Board game category was successfully created.' }
         format.json { render :show, status: :created, location: @board_game_category }
       else
         format.html { render :new }
@@ -42,7 +48,7 @@ class BoardGameCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @board_game_category.update(board_game_category_params)
-        format.html { redirect_to @board_game_category, notice: 'Board game category was successfully updated.' }
+        format.html { redirect_to admin_index_board_game_categories_path, notice: 'Board game category was successfully updated.' }
         format.json { render :show, status: :ok, location: @board_game_category }
       else
         format.html { render :edit }
@@ -56,7 +62,7 @@ class BoardGameCategoriesController < ApplicationController
   def destroy
     @board_game_category.destroy
     respond_to do |format|
-      format.html { redirect_to board_game_categories_url, notice: 'Board game category was successfully destroyed.' }
+      format.html { redirect_to admin_index_board_game_categories_path, notice: 'Board game category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :product_tax_assigments
   resources :invoice_lines
   resources :board_game_categories do
-
+    get 'admin_index', :on => :collection
     resources :board_games
 
   end

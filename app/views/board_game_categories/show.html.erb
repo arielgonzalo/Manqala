@@ -1,14 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @board_game_category.name %>
-</p>
+</h1>
 
-<p>
-  <strong>Description:</strong>
+<h3>
   <%= @board_game_category.description %>
-</p>
+</h3>
 
-<%= link_to 'Edit', edit_board_game_category_path(@board_game_category) %> |
-<%= link_to 'Back', board_game_categories_path %>
+<% @board_games.each do |board_game| %>
+
+	<div class="row product_field">
+
+		<div class="col-xs-2">
+			<img src="<%= board_game.photo.url %>" class="product_image">
+		</div>
+
+		<div class="col-xs-2">
+			<h2> <%= board_game.name %> </h2>
+		</div>
+		<div class="col-xs-1">
+			
+		</div>
+
+		<div class="col-xs-3">
+			<h4> <%= board_game.description %> </h4>
+		</div>
+
+		<div class="col-xs-2 button_column">
+
+			<%= link_to edit_board_game_category_board_game_path(@board_game_category, board_game) do %>
+
+		        <div class="btn_edit">
+		          <h5 class="centered_text"> Editar </h5> 
+		        </div>
+
+		    <% end %>
+
+			<%= link_to  board_game_category_board_game_path(@board_game_category, board_game), method: :delete, data: { confirm: '¿Seguro que desea eliminar el producto?' } do %>
+
+			    <div class="btn_products center-block">
+			        <h5 class="centered_text"> Eliminar </h5>
+			    </div>
+
+      		<% end %>
+		</div>
+
+	</div>
+
+<% end %>
+
+<a href=<%= admin_index_board_game_categories_path %> class="pull-right" >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</h1>
+      </div>
+</a>
+
+<a href=<%= new_board_game_category_board_game_path(@board_game_category) %>  >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-plus-sign"></span>Agregar Juegos</h1>
+      </div>
+ </a>
