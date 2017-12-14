@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
   def edit
   end
 
+
   def mark_as_served
     @order = Order.find(params[:id])
     @order.update_attributes(:status => 4)
