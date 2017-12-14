@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209081422) do
+ActiveRecord::Schema.define(version: 20171214045448) do
 
   create_table "board_game_categories", force: :cascade do |t|
     t.string "name"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 20171209081422) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.integer "client_id"
     t.integer "board_game_id"
     t.date "start_time"
     t.date "end_time"
@@ -142,7 +141,6 @@ ActiveRecord::Schema.define(version: 20171209081422) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["board_game_id"], name: "index_rentals_on_board_game_id"
-    t.index ["client_id"], name: "index_rentals_on_client_id"
     t.index ["table_id"], name: "index_rentals_on_table_id"
   end
 
