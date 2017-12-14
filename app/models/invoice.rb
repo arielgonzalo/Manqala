@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
 
   def create_lines
   	@invoice = Invoice.find(self.id)
-  	  @orders = Order.select("PRODUCT_ID, SUM(INVOICED) AS INVOICED, SUM(QUANTITY) AS quantity").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @invoice.table_id}).group("PRODUCT_ID")
+  	  @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE invoiced = 'f' AND TABLE_ID = '?'", @invoice.table_id] )
       @orders.each do |order|
         product = Product.find(order.product_id)
         line_total = order.quantity * product.price
