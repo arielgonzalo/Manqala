@@ -50,9 +50,6 @@
 							<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
 						</div>
 
-						<div class="col-xs-2">
-							<h5> <%= order.comment %> </h5>
-						</div>
 						
 						<div class="col-xs-2 button_column"  >
 							
@@ -79,5 +76,5 @@
     	$('#orders_table').load("index #orders_table");
 	}
 	
-	setInterval(loadtable, 5000);
+	setInterval(loadtable, 10000);
 </script>

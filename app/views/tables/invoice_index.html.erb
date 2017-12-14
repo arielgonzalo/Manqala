@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
   <h1>Facturación por Mesa</h1>
 
   <div id="tables_with_orders" class = "row text-center align-center">
@@ -10,6 +9,9 @@
       <div class="col-xs-2 table_box  <%= table.is_outdoor ? 'outdoor' : 'indoor' %>">
         <h2><%=table.name%></h2>
       </br>
+
+        <%= link_to "Por linea",  table_detailed_invoice_path(table, :id => table.id), :target => "_blank" , class:'btn btn-default' %>
+
         <%= button_to generate_invoice_invoices_path( :table => table.id), calss:'btn btn-default' do %>
 
           <div class="">
