@@ -1,5 +1,5 @@
 class TablesController < ApplicationController
-  before_action :set_table, only: [:show, :edit, :update, :destroy]
+  before_action :set_table, only: [:detailed_invoice, :show, :edit, :update, :destroy]
   before_action :set_orders, only: [:show]
 
   # GET /tables
@@ -16,10 +16,13 @@ class TablesController < ApplicationController
     @tables = Table.find_by_sql(["SELECT * FROM TABLES WHERE ID IN (SELECT DISTINCT TABLE_ID FROM ORDERS WHERE invoiced = 'f')"])
   end
 
+  def detailed_invoice
+    @orders = Order.select("PRODUCT_ID, SUM(INVOICED) AS INVOICED, SUM(QUANTITY) AS ORDERED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+  end
   # GET /tables/1
   # GET /tables/1.json
   def show
-    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE invoiced = 'f' AND TABLE_id = '?' ORDER BY created_at ASC", @table.id])
+    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE (invoiced = 'f' or status < 4) AND TABLE_id = '?' ORDER BY created_at ASC", @table.id])
   end
 
   # GET /tables/new

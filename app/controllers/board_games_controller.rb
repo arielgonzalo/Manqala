@@ -8,12 +8,13 @@ class BoardGamesController < ApplicationController
   end
 
   def admin_index 
-    @games = BoardGame.all
+    @board_games = BoardGame.all
   end
 
   # GET /board_games/1
   # GET /board_games/1.json
   def show
+
   end
 
   # GET /board_games/new
@@ -32,7 +33,7 @@ class BoardGamesController < ApplicationController
     @board_game.board_game_category = @board_game_category
     respond_to do |format|
       if @board_game.save
-        format.html { redirect_to [@board_game_category, @board_game], notice: 'Board game was successfully created.' }
+        format.html { redirect_to [@board_game_category], notice: 'Board game was successfully created.' }
         format.json { render :show, status: :created, location: @board_game }
       else
         format.html { render :new }
@@ -46,7 +47,7 @@ class BoardGamesController < ApplicationController
   def update
     respond_to do |format|
       if @board_game.update(board_game_params)
-        format.html { redirect_to [@board_game_category, @board_game], notice: 'Board game was successfully updated.' }
+        format.html { redirect_to [@board_game_category], notice: 'Board game was successfully updated.' }
         format.json { render :show, status: :ok, location: @board_game }
       else
         format.html { render :edit }
@@ -60,7 +61,7 @@ class BoardGamesController < ApplicationController
   def destroy
     @board_game.destroy
     respond_to do |format|
-      format.html { redirect_to board_games_url, notice: 'Board game was successfully destroyed.' }
+      format.html { redirect_to [@board_game_category], notice: 'Board game was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

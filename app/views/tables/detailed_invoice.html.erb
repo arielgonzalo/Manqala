@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<% @orders.each do |order| %>
+	<% product = Product.find(order.product_id) %>
+	<div class="row">
+		<div class="col-xs-2">
+			<h3><%= product.name %></h3>
+		</div>
+		<div class="col-xs-2">
+			<h3><%= (order.ORDERED - order.INVOICED).to_i %></h3>
+		</div>
+		<div class="col-xs-2"><%= number_field_tag 'paying', nil, in: 1...(1+(order.ORDERED - order.INVOICED))
+		.to_i%></div>
+	</div>
+<% end %>

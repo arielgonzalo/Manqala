@@ -1,25 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-  <h1>Administración de Productos por categoría</h1>
+  <h1>Administración de Juegos por categoría</h1>
 
 <div class = "row text-center align-center">
 
-  <% @categories.each do |category| %>
+  <% @board_game_categories.each do |board_game_category| %>
 
     <div class="col-xs-2 category_admin_box  ">
-      <h2><%=category.name%></h2>
+      <h2><%=board_game_category.name%></h2>
     </br>
 
-      <%= link_to category_path(category) do %>
+      <%= link_to board_game_category_path(board_game_category) do %>
 
         <div class="btn_products">
-          <h5 class="centered_text"> Productos </h5> 
+          <h5 class="centered_text"> Juegos </h5> 
         </div>
 
       <% end %>
 
-      <%= link_to edit_category_path(category) do %>
+      <%= link_to edit_board_game_category_path(board_game_category) do %>
 
         <div class="btn_edit">
           <h5 class="centered_text"> Editar </h5> 
@@ -27,7 +27,7 @@
 
       <% end %>
 
-      <%= link_to  category, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <%= link_to  board_game_category, method: :delete, data: { confirm: 'Are you sure?' } do %>
 
         <div class="btn_delete center-block">
           <h5 class="centered_text"> Eliminar </h5>
@@ -36,7 +36,6 @@
       <% end %>
     </div>
  
-
   <% end %>
 </div>
   <br>
@@ -47,7 +46,7 @@
           </div>
   </a>
 
-  <a href=<%= new_category_path %>  >
+  <a href=<%= new_board_game_category_path %>  >
       <div style="height: 110px;" class="btn btn-default btn-lg">
             <h1 class="display-1"><span class="glyphicon glyphicon-plus-sign"></span>Agregar Categoría</h1>
       </div>

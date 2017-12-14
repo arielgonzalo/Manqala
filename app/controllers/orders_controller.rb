@@ -22,9 +22,18 @@ class OrdersController < ApplicationController
   def edit
   end
 
+
   def mark_as_served
     @order = Order.find(params[:id])
     @order.update_attributes(:status => 4)
+    if @order.save
+       redirect_to table_path(@table)
+    end
+  end
+
+  def mark_as_billable
+    @order = Order.find(params[:id])
+    @order.update_attributes(:billable => !@order.billable)
     if @order.save
        redirect_to table_path(@table)
     end

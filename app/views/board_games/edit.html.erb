@@ -1,6 +1,10 @@
-<h1>Editing Board Game</h1>
+<h1>Editar Juego</h1>
 
 <%= render 'form', board_game: @board_game %>
 
-<%= link_to 'Show', @board_game %> |
-<%= link_to 'Back', board_game_category_board_games_path(@board_game_category, @board_game) %>
+
+<a href=<%= board_game_category_path(@board_game_category) %> class="pull-right" >
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</h1>
+      </div>
+</a>
