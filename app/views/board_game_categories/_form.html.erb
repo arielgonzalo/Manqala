@@ -11,17 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :board_game_category_name %>
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, class: "form-control", id: :board_game_category_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :board_game_category_description %>
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_field :description, class: "form-control", id: :board_game_category_description %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+
+    <%= button_tag(type: 'submit') do %>
+      <div style="height: 110px;" class="btn btn-default btn-lg">
+            <h1 class="display-1"><span class="glyphicon glyphicon-ok-sign"></span>Guardar</h1>
+      </div>
+    <% end %>
   </div>
 <% end %>
