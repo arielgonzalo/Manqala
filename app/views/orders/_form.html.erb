@@ -43,7 +43,7 @@
             <div class="row product_box">
               
               <div class="col-xs-4">
-                <h2><%= product.name %></h2>
+                <h2 class="orders_box"><%= product.name %></h2>
                 <%= form.label "Indicaciones", class:"form-label" %>
                 <%= form.text_field :comment, id: :order_comment, name: 'comment_' + product.id.to_s, class:"form-control" %>
               </div>
