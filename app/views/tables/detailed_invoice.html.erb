@@ -7,9 +7,20 @@
 			<h3><%= product.name %></h3>
 		</div>
 		<div class="col-xs-2">
-			<h3><%= (order.ORDERED - order.INVOICED).to_i %></h3>
+			<h3><%= (order.ORDERED - order.BILLED).to_i %></h3>
 		</div>
-		<div class="col-xs-2"><%= number_field_tag 'paying', nil, in: 1...(1+(order.ORDERED - order.INVOICED))
-		.to_i%></div>
+		<div class="col-xs-2">
+			<%= number_field_tag 'paying', 0, in: 0...(1+(order.ORDERED - order.BILLED)).to_i,  :onchange => "alert_me_test()" %>
+		</div>
 	</div>
 <% end %>
+
+<%= button_to "Facturar", generate_invoice_invoices_path( :table => params[:table_id]), calss:'btn btn-default'  %>
+
+<script type="text/javascript">
+  $('select').change(alert_me_test);
+
+  function alert_me_test(){
+   alert ("this is a test")
+  }
+</script>

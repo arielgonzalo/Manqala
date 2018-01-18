@@ -17,7 +17,7 @@ class TablesController < ApplicationController
   end
 
   def detailed_invoice
-    @orders = Order.select("PRODUCT_ID, SUM(INVOICED) AS INVOICED, SUM(QUANTITY) AS ORDERED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+    @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
   end
   # GET /tables/1
   # GET /tables/1.json
