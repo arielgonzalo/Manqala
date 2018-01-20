@@ -123,6 +123,8 @@
 
 .orders_box{
     display: block;
-    white-space: nowrap;
+    white-space: pre-wrap;
     overflow: auto;
+    font-size: medium;
+    max-height: 40px;
 }
