@@ -31,6 +31,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def change_to_invoice(value)
+    @order.update_attributes(:invoiced => value)
+    puts @order.errors.full_messages
+    # ... update successful
+  end
+
   def mark_as_billable
     @order = Order.find(params[:id])
     @order.update_attributes(:billable => !@order.billable)

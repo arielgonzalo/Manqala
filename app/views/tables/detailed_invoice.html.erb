@@ -10,7 +10,7 @@
 			<h3><%= (order.ORDERED - order.BILLED).to_i %></h3>
 		</div>
 		<div class="col-xs-2">
-			<%= number_field_tag 'paying', 0, in: 0...(1+(order.ORDERED - order.BILLED)).to_i,  :onchange => "alert_me_test()" %>
+			<%= number_field_tag 'paying', 0, in: 0...(1+(order.ORDERED - order.BILLED)).to_i,  :onchange => "change_value(this)", id: ""+product.id.to_s %>
 		</div>
 	</div>
 <% end %>
@@ -18,9 +18,24 @@
 <%= button_to "Facturar", generate_invoice_invoices_path( :table => params[:table_id]), calss:'btn btn-default'  %>
 
 <script type="text/javascript">
-  $('select').change(alert_me_test);
 
-  function alert_me_test(){
-   alert ("this is a test")
-  }
+
+
+function change_value(element){
+
+	$.ajax({
+  		url: "add_to_billeable",
+  		type: "POST",
+  		data: {"element_id": element.id, "element_value": element.value},
+  		success: function(response) {
+  			
+    		alert (response);
+  		},
+  		error: function(response) {
+    		console.log('error: ' + response);
+  		}
+	});
+
+}
+
 </script>

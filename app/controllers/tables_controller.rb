@@ -18,6 +18,7 @@ class TablesController < ApplicationController
 
   def detailed_invoice
     @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+    @billeable_qts = Hash.new 
   end
   # GET /tables/1
   # GET /tables/1.json
@@ -29,6 +30,8 @@ class TablesController < ApplicationController
   def new
     @table = Table.new
   end
+
+  
 
   # GET /tables/1/edit
   def edit
@@ -74,17 +77,17 @@ class TablesController < ApplicationController
     end
   end
 
+  def add_to_billeable
+    @billeable_qts["hola"] = params["element_value"]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table
       @table = Table.find(params[:id])
     end
 
-    def set_orders
-      
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
+   # Never trust parameters from the scary internet, only allow the white list through.
     def table_params
       params.require(:table).permit(:name, :is_outdoor, :location)
     end
