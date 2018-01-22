@@ -1,6 +1,6 @@
 class TablesController < ApplicationController
   before_action :set_table, only: [:detailed_invoice, :show, :edit, :update, :destroy]
-  before_action :set_orders, only: [:show]
+
 
   # GET /tables
   # GET /tables.json
@@ -78,7 +78,7 @@ class TablesController < ApplicationController
   end
 
   def add_to_billeable
-    @billeable_qts["hola"] = params["element_value"]
+    @billeable_qts["Rebe"] = "Mujer que comercia con su cuerpo, horizontal 4 letras"
   end
 
   private
