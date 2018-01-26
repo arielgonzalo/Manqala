@@ -19,8 +19,10 @@ class TablesController < ApplicationController
   end
 
   def detailed_invoice
+    Order.where(["invoiced = 'f' and table_id = '?'", @table.id]).each do |order| 
+      order.update_attributes(:billeable_qt => 0)
+    end
     @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
-    @billeable_qts = Hash.new 
   end
   # GET /tables/1
   # GET /tables/1.json
@@ -80,7 +82,14 @@ class TablesController < ApplicationController
   end
 
   def add_to_billeable
-    @billeable_qts["Rebe"] = "Mujer que comercia con su cuerpo, horizontal 4 letras"
+    @order = Order.where(["invoiced = 'f' and product_id = ?", params[:element_id]]).first
+    if @order != nil  
+      @order.update_attributes(:billeable_qt => params[:element_value])
+      if @order.save
+         #redirect_to table_path(@table)
+      end
+    end  
+    head :ok
   end
 
   private

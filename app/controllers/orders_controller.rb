@@ -37,11 +37,11 @@ class OrdersController < ApplicationController
     # ... update successful
   end
 
-  def mark_as_billable
+  def mark_as_billable(quantity)
     @order = Order.find(params[:id])
-    @order.update_attributes(:billable => !@order.billable)
+    @order.update_attributes(:billable_qt => quantity)
     if @order.save
-       redirect_to table_path(@table)
+       #redirect_to table_path(@table)
     end
   end
 
