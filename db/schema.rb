@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126215740) do
+ActiveRecord::Schema.define(version: 20180129181602) do
 
   create_table "board_game_categories", force: :cascade do |t|
     t.string "name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20180126215740) do
     t.date "date_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "detailed", default: false
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["table_id"], name: "index_invoices_on_table_id"
   end

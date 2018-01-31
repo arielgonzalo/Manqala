@@ -1,6 +1,9 @@
+
 <p id="notice"><%= notice %></p>
 
   <h1>Facturación por Mesa</h1>
+
+  <div id="modal-window" class="modal" role="dialog" aria-labelledby="myModalLabel" ></div>
 
   <div id="tables_with_orders" class = "row text-center align-center">
     
@@ -10,9 +13,9 @@
         <h2><%=table.name%></h2>
       </br>
 
-        <%= link_to "Por linea",  table_detailed_invoice_path(table, :id => table.id), :target => "_blank" , class:'btn btn-default' %>
+        <%= button_to "Facturar", generate_invoice_invoices_path( :table => table.id, :detailed => false), class:'btn btn-default'  %>
 
-        <%= button_to "Facturar", generate_invoice_invoices_path( :table => table.id), calss:'btn btn-default'  %>
+        <%= link_to "Por linea",  table_detailed_invoice_path(table, :id => table.id), {:target => 'blank', 'class' => "btn btn-default"} %>
 
       </div>
 

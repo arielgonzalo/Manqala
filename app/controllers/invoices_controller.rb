@@ -55,17 +55,31 @@ class InvoicesController < ApplicationController
 
 
   def generate_invoice
-    @invoice = Invoice.new
-    @table = Table.find(params[:table])
-    @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE invoiced = 'f' AND TABLE_ID = '?'", @table.id])
-    total = 0
-    @orders.each do |order|
-      product = Product.find(order.product_id)
-      line_total = order.quantity * product.price
-      total = total + line_total
-    end
-    Invoice.create( {:table_id=> @table.id, :total => total })
 
+    @table = Table.find(params[:table])
+    @total = 0
+    if ActiveModel::Type::Boolean.new.cast( params[:detailed] ) 
+      @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED, SUM(BILLEABLE_QT) as BILLEABLE_QT").where("INVOICED = 'f' and PRODUCT_ID in (SELECT DISTINCT PRODUCT_ID FROM ORDERS WHERE BILLEABLE_QT > 0) and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+      @orders.each do |order|
+        product = Product.find(order.product_id)
+        line_total = (order.BILLEABLE_QT) * product.price
+        @total = @total + line_total
+      end
+    else 
+      @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+      @orders.each do |order|
+        product = Product.find(order.product_id)
+        line_total = (order.ORDERED - order.BILLED) * product.price
+        @total = @total + line_total
+      end
+    end
+    @invoice = Invoice.create( {:table_id=> @table.id, :total => @total, :detailed => params[:detailed] })
+      if ActiveModel::Type::Boolean.new.cast( params[:detailed] )
+        respond_to do |format|
+          format.html { redirect_to invoice_path(@invoice)}
+
+        end
+      end
   end
 
   # DELETE /invoices/1
@@ -86,6 +100,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:client_id, :table_id, :user_id, :subtotal, :taxes, :service, :total, :date_time)
+      params.require(:invoice).permit(:client_id, :table_id, :user_id, :subtotal, :taxes, :service, :total, :date_time, :detailed)
     end
 end

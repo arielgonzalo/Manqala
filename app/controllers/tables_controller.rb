@@ -23,6 +23,7 @@ class TablesController < ApplicationController
       order.update_attributes(:billeable_qt => 0)
     end
     @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+
   end
   # GET /tables/1
   # GET /tables/1.json
