@@ -5,7 +5,11 @@ class Invoice < ApplicationRecord
 
   def create_lines
   	@invoice = Invoice.find(self.id)
-  	  @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED, SUM(BILLEABLE_QT) as BILLEABLE_QT").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @invoice.table_id}).group("PRODUCT_ID")
+      if(@invoice.detailed)
+  	    @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED, SUM(BILLEABLE_QT) as BILLEABLE_QT").where("INVOICED = 'f' and PRODUCT_ID in (SELECT DISTINCT PRODUCT_ID FROM ORDERS WHERE BILLEABLE_QT > 0 and TABLE_ID = :table_id and INVOICED = 'f' ) and TABLE_ID = :table_id", {table_id: @invoice.table_id}).group("PRODUCT_ID")
+      else
+        @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED, SUM(BILLEABLE_QT) as BILLEABLE_QT").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @invoice.table_id}).group("PRODUCT_ID")
+      end
       @orders.each do |order|
         product = Product.find(order.product_id)
         if(@invoice.detailed)

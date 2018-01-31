@@ -59,7 +59,7 @@ class InvoicesController < ApplicationController
     @table = Table.find(params[:table])
     @total = 0
     if ActiveModel::Type::Boolean.new.cast( params[:detailed] ) 
-      @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED, SUM(BILLEABLE_QT) as BILLEABLE_QT").where("INVOICED = 'f' and PRODUCT_ID in (SELECT DISTINCT PRODUCT_ID FROM ORDERS WHERE BILLEABLE_QT > 0) and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+      @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED, SUM(BILLEABLE_QT) as BILLEABLE_QT").where("INVOICED = 'f' and PRODUCT_ID in (SELECT DISTINCT PRODUCT_ID FROM ORDERS WHERE BILLEABLE_QT > 0 AND INVOICED = 'f' AND TABLE_ID = :table_id ) and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
       @orders.each do |order|
         product = Product.find(order.product_id)
         line_total = (order.BILLEABLE_QT) * product.price
