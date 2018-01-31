@@ -1,6 +1,8 @@
 class TablesController < ApplicationController
   before_action :set_table, only: [:detailed_invoice, :show, :edit, :update, :destroy]
-  before_action :set_orders, only: [:show]
+
+  #before_action :set_orders, only: [:show]
+
 
   # GET /tables
   # GET /tables.json
@@ -17,7 +19,11 @@ class TablesController < ApplicationController
   end
 
   def detailed_invoice
-    @orders = Order.select("PRODUCT_ID, SUM(INVOICED) AS INVOICED, SUM(QUANTITY) AS ORDERED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+    Order.where(["invoiced = 'f' and table_id = '?'", @table.id]).each do |order| 
+      order.update_attributes(:billeable_qt => 0)
+    end
+    @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @table.id}).group("PRODUCT_ID")
+
   end
   # GET /tables/1
   # GET /tables/1.json
@@ -29,6 +35,8 @@ class TablesController < ApplicationController
   def new
     @table = Table.new
   end
+
+  
 
   # GET /tables/1/edit
   def edit
@@ -74,17 +82,24 @@ class TablesController < ApplicationController
     end
   end
 
+  def add_to_billeable
+    @order = Order.where(["invoiced = 'f' and product_id = ?", params[:element_id]]).first
+    if @order != nil  
+      @order.update_attributes(:billeable_qt => params[:element_value])
+      if @order.save
+         #redirect_to table_path(@table)
+      end
+    end  
+    head :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table
       @table = Table.find(params[:id])
     end
 
-    def set_orders
-      
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
+   # Never trust parameters from the scary internet, only allow the white list through.
     def table_params
       params.require(:table).permit(:name, :is_outdoor, :location)
     end

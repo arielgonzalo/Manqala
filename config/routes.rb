@@ -23,15 +23,17 @@ Rails.application.routes.draw do
     get 'detailed_invoice', as: :detailed_invoice
     get  'admin_index', :on => :collection
     get  'invoice_index', :on => :collection
+    
     resources :orders do
       member do
             get 'mark_as_served' => "orders#mark_as_served"
             get 'mark_as_completed_bar' => "orders#mark_as_completed_bar"
             get 'mark_as_completed_kitchen' => "orders#mark_as_completed_kitchen"
             get 'mark_as_billable' => "orders#mark_as_billable"
+            put 'change_to_invoice' => "orders#change_to_invoice"
           end
     end
-    
+    post 'add_to_billeable' => "tables#add_to_billeable"
   end
   resources :invoice_details
   resources :invoices do

@@ -5,13 +5,26 @@ class Invoice < ApplicationRecord
 
   def create_lines
   	@invoice = Invoice.find(self.id)
-  	  @orders = Order.find_by_sql(["SELECT * FROM ORDERS WHERE invoiced = 'f' AND TABLE_ID = '?'", @invoice.table_id] )
+  	  @orders = Order.select("PRODUCT_ID, SUM(QUANTITY) AS ORDERED, SUM(BILLED) as BILLED, SUM(BILLEABLE_QT) as BILLEABLE_QT").where("INVOICED = 'f' and TABLE_ID = :table_id", {table_id: @invoice.table_id}).group("PRODUCT_ID")
       @orders.each do |order|
         product = Product.find(order.product_id)
-        line_total = order.quantity * product.price
-        InvoiceLine.create( {:invoice_id=> @invoice.id, :quantity => order.quantity, :product_id => product.id, :unit_price => product.price, :total_price => line_total })
-        order.update_attributes(:invoiced => true)
-    	order.save
+        if(@invoice.detailed)
+          billeable = order.BILLEABLE_QT
+        else
+          billeable = order.ORDERED - order.BILLED
+        end  
+        line_total = billeable * product.price
+        InvoiceLine.create( {:invoice_id=> @invoice.id, :quantity => billeable, :product_id => product.id, :unit_price => product.price, :total_price => line_total })
+        if(@invoice.detailed && (billeable + order.BILLED) < order.ORDERED  )
+          order_line = Order.where("INVOICED = 'f' and PRODUCT_ID = :product_id and TABLE_ID = :table_id", {table_id: @invoice.table_id, product_id: order.product_id}).first
+          order_line.update_attributes(:billed => order.BILLED + billeable)
+          order_line.save
+        else
+          @order_lines = Order.where("INVOICED = 'f' and PRODUCT_ID = :product_id and TABLE_ID = :table_id", {table_id: @invoice.table_id, product_id: order.product_id}).each do |order_line|
+            order_line.update_attributes(:invoiced => true)
+            order_line.save
+          end
+        end 
       end
 
   end

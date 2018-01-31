@@ -31,11 +31,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  def mark_as_billable
+  def change_to_invoice(value)
+    @order.update_attributes(:invoiced => value)
+    puts @order.errors.full_messages
+    # ... update successful
+  end
+
+  def mark_as_billable(quantity)
     @order = Order.find(params[:id])
-    @order.update_attributes(:billable => !@order.billable)
+    @order.update_attributes(:billable_qt => quantity)
     if @order.save
-       redirect_to table_path(@table)
+       #redirect_to table_path(@table)
     end
   end
 

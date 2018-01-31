@@ -1,0 +1,57 @@
+
+<div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+   <h3 id="myModalLabel">Factura detallada</h3>
+ </div>
+ <div class="modal-body">
+
+	<p id="notice"><%= notice %></p>
+
+	<% @orders.each do |order| %>
+		<% product = Product.find(order.product_id) %>
+		<div class="row">
+			<div class="col-xs-2">
+				<h3><%= product.name %></h3>
+			</div>
+			<div class="col-xs-2">
+				<h3><%= (order.ORDERED - order.BILLED).to_i %></h3>
+			</div>
+			<div class="col-xs-2">
+				<%= number_field_tag 'paying', 0, in: 0...(1+(order.ORDERED - order.BILLED)).to_i,  :onchange => "change_value(this)", id: ""+product.id.to_s %>
+			</div>
+		</div>
+	<% end %>
+
+ </div>
+ <div class="modal-footer">
+   <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+   <%= button_to "Facturar", generate_invoice_invoices_path( :table => params[:table_id], :detailed => true ), class:'btn btn-default'  %>
+ </div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+function change_value(element){
+
+	$.ajax({
+  		url: "add_to_billeable",
+  		type: "POST",
+  		data: {"element_id": element.id, "element_value": element.value},
+  		success: function(response) {
+  			
+    		alert (response);
+  		},
+  		error: function(response) {
+    		console.log('error: ' + response);
+  		}
+	});
+
+}
+
+</script>

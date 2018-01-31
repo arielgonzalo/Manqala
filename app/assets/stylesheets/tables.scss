@@ -120,3 +120,11 @@
 	background-color: #80002A;
 	color: white;
 }
+
+.orders_box{
+    display: block;
+    white-space: pre-wrap;
+    overflow: auto;
+    font-size: medium;
+    max-height: 40px;
+}
