@@ -78,7 +78,7 @@ function change_value(element){
 	$.ajax({
   		url: "add_to_billeable",
   		type: "POST",
-  		data: {"element_id": element.id, "element_value": element.value},
+  		data: {"element_id": element.id, "element_value": element.value, "table_id": <%= @table.id %>},
   		success: function(response) {
   			
     		console.log('success: ' + response);

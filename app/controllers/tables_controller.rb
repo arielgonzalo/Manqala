@@ -83,7 +83,7 @@ class TablesController < ApplicationController
   end
 
   def add_to_billeable
-    @order = Order.where("invoiced = 'f' and product_id = :element_id and table_id = :table_id", :element_id => params[:element_id], :table_id => @table_id).first
+    @order = Order.where("invoiced = 'f' and product_id = :element_id and table_id = :table_id", :element_id => params[:element_id], :table_id => params[:tables_id]).first
     if @order != nil  
       @order.update_attributes(:billeable_qt => params[:element_value])
       if @order.save
