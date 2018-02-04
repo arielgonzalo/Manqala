@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def mark_as_served
     @order = Order.find(params[:id])
-    @order.update_attributes(:status => 4)
+    @order.update_attributes(:status => 5)
     if @order.save
        redirect_to table_path(@table)
     end
@@ -92,10 +92,19 @@ class OrdersController < ApplicationController
 
   def mark_as_completed_kitchen
     @order = Order.find(params[:id])
-    @order.update_attributes(:status => 3)
+    @order.update_attributes(:status => (@order.status + 1))
     if @order.save
        redirect_to kitchen_index_path
     end
+  end
+
+  def mark_as_uncompleted_kitchen
+    @order = Order.find(params[:id])
+    @order.update_attributes(:status => (@order.status - 1))
+    if @order.save
+       redirect_to kitchen_index_path
+    end
+    
   end
 
   def mark_as_completed_bar

@@ -1,80 +1,113 @@
-<div class="container">
-	<h1>Órdenes</h1>
+</div>
 
-	<div class="row row_header">
+	<div id = "orders_table"  data-no-turbolink>
 
-		<div class="col-xs-2 header">
-			<h4> Producto </h4>
-		</div>
+		<div class="col-xs-12" id="working_orders">
 
-		<div class="col-xs-1 header">
-			<h4> Cantidad </h4>
-		</div>
-
-		<div class="col-xs-2 header">
-			<h4> Mesa </h4>
-		</div>
-
-		<div class="col-xs-2 header">
-			<h4> Hora Pedido </h4>
-		</div>
-
-		<div class="col-xs-2 header">
-			<h4> Pedido Completado </h4>
-		</div>
-
-	</div>
-
-	<div id = "orders_table" >
-		<% @orders.each do |order| %>
+	<% @orders.each do |order| %>
 
 			<div id="table">
+				<% product = Product.find(order.product_id)%>
+				<% table = Table.find(order.table_id)%>
+				<% id = "id_"+order.id.to_s %>
+				<% status = order.status.to_s %>
+				<% onclick = 'reload(this.id, ' + status + ')'%>
 
-					<div class = "row row_field">
 
-						<% product = Product.find(order.product_id)%>
-						<% table = Table.find(order.table_id)%>
+				<%= link_to mark_as_completed_kitchen_table_order_path(table, order), { :id => id} do %>
+
+					<div class = "col-xs-2 table_kitchen_box <%= order.status == 2 ? 'on_process' : ''%>">
+
+						<div class="col-xs-3 btn_complete">
+							Qt:<h1><%= order.quantity %> </h1>
+						</div>
 						<div class="col-xs-2">
-							<h3> <%= product.name %> </h3>
+							<h4>Mesa: <%= table.name %> </h4>
 						</div>
 
-						<div class="col-xs-1">
-							<h3> <%= order.quantity %> </h3>
+						<div class="">
+							<h1><%= product.name %> </h1>
 						</div>
 
-						<div class="col-xs-2">
-							<h3> <%= table.name %> </h3>
-						</div>
-
-						<div class="col-xs-2">
+						<div class="">
 							<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
 						</div>
 
 						
-						<div class="col-xs-2 button_column"  >
-							
-						          <%= link_to mark_as_completed_kitchen_table_order_path(table, order) do %>
-						        	<div class="btn_complete"> <h4>Listo</h4> </div>
-						          <%end%> 
-						</div>
 
-						<div class="col-xs-12"><h5><strong>Descripción: </strong> <%= product.description %></h5></div>
 						<% if order.comment != nil && order.comment != "" %>
-							<div class="col-xs-12"><h5><strong>Indicaciones: </strong> <%= order.comment %></h5></div>
+							<div class=""><h5><strong>Indicaciones: </strong> <%= order.comment %></h5></div>
 						<% end %>
 					</div>
+				<%end%> 
 			</div>
 
-		<% end %>
+	<% end %>
 
 	</div>
+
+	
+
+
+	<div class="col-xs-12" id="ready_orders">
+
+		<h2>Ordenes listas: </h2>
+
+		<% @ready_orders.each do |order| %>
+
+			<div id="table">
+				<% product = Product.find(order.product_id)%>
+				<% table = Table.find(order.table_id)%>
+				<% id = "id_"+order.id.to_s %>
+				<% status = order.status.to_s %>
+				<% onclick = 'reload(this.id, ' + status + ')'%>
+
+				<%= link_to mark_as_uncompleted_kitchen_table_order_path(table, order), {:id => id } do %>
+
+					<div class = "col-xs-2 table_kitchen_ready_box">
+
+						<div class="col-xs-3 btn_complete">
+							Qt:<h1><%= order.quantity %> </h1>
+						</div>
+						<div class="col-xs-2">
+							<h4>Mesa: <%= table.name %> </h4>
+						</div>
+
+						<div class="">
+							<h1><%= product.name %> </h1>
+						</div>
+
+						<div class="">
+							<h5> <%= order.created_at.strftime("%I:%M:%S%p") %> </h5>
+						</div>
+
+						
+
+						<% if order.comment != nil && order.comment != "" %>
+							<div class=""><h5><strong>Indicaciones: </strong> <%= order.comment %></h5></div>
+						<% end %>
+					</div>
+				<%end%> 
+			</div>
+
+	<% end %>
+
 </div>
+
+
+
+	</div>
 
 <script type="text/javascript">
 
 	function loadtable() {
     	$('#orders_table').load("index #orders_table");
 	}
-	
-	setInterval(loadtable, 10000);
+
+	function reload(element, status) {
+
+		alert(status);
+	}
+
+
 </script>

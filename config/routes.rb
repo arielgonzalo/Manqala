@@ -29,6 +29,7 @@ Rails.application.routes.draw do
             get 'mark_as_served' => "orders#mark_as_served"
             get 'mark_as_completed_bar' => "orders#mark_as_completed_bar"
             get 'mark_as_completed_kitchen' => "orders#mark_as_completed_kitchen"
+            get 'mark_as_uncompleted_kitchen' => "orders#mark_as_uncompleted_kitchen"
             get 'mark_as_billable' => "orders#mark_as_billable"
             put 'change_to_invoice' => "orders#change_to_invoice"
           end

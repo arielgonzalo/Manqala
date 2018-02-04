@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129181602) do
+ActiveRecord::Schema.define(version: 20180204004436) do
 
   create_table "board_game_categories", force: :cascade do |t|
     t.string "name"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20180129181602) do
     t.boolean "invoiced", default: false
     t.integer "billed", default: 0
     t.integer "billeable_qt", default: 0
+    t.boolean "on_process", default: false
     t.index ["pass_id"], name: "index_orders_on_pass_id"
     t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["table_id"], name: "index_orders_on_table_id"
