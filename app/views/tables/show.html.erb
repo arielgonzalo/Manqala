@@ -1,4 +1,12 @@
 
+	<ul class="nav navbar-nav pull-right" >
+					<% if !user_signed_in? %>
+					<li><%= link_to "Iniciar sesión", new_user_session_path, style: "color: white" %></li>
+					<%else%>
+					<li><%= link_to "Cerrar sesión",  destroy_user_session_path, style: "color: white", :method => :delete %></li>
+					<%end%>
+	</ul>
+
 	<p id="notice"><%= notice %></p>
 
 	<h4 style="color: white; text-align: center;" class=<%= @table.is_outdoor ? 'outdoor' : 'indoor' %>>
@@ -98,9 +106,13 @@
 							<h5> <%= status %> </h5>
 						</div>
 
-						<div class="col-xs-2">
-							<%= link_to 'Cancelar Orden',table_order_path(@table, order), method: :delete, data: { confirm: '¿Cancelar Orden?' }, class:'btn btn-danger ' %> 
-						</div>
+						<%if current_user.try(:admin?)%>
+  
+							<div class="col-xs-2">
+								<%= link_to 'Cancelar Orden',table_order_path(@table, order), method: :delete, data: { confirm: '¿Cancelar Orden?' }, class:'btn btn-danger ' %> 
+							</div>
+
+						<%end%>
 
 						<% if order.status == 3 %>
 

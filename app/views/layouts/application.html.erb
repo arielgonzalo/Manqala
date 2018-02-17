@@ -36,12 +36,15 @@
 
   <body>
 
+
     <div class="main_header container">
       <img src="<%= image_url('logo_manqala.png') %>" class="img-responsive" style="max-width: 20%">
        
     </div>
 
   	<div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     	<%= yield %>
     </div>
   </body>
