@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :mark_as_completed_kitchen, :mark_as_completed_bar]
   before_action :set_table
   before_action :set_categories, only: [:new]
+  before_action :authenticate_user!, only: [:destroy]
+
   # GET /orders
   # GET /orders.json
   def index
@@ -21,7 +23,6 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
   end
-
 
   def mark_as_served
     @order = Order.find(params[:id])
@@ -115,7 +116,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  private
+    private      
+
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
